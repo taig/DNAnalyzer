@@ -41,6 +41,23 @@ public class Sequence extends ArrayList<Nucleotide>
 	}
 
 	/**
+	 * Get the complement of the current Sequence.
+	 *
+	 * @return The complement of the current Sequence.
+	 */
+	public Sequence getComplement()
+	{
+		Sequence complement = new Sequence();
+
+		for( Nucleotide nucleotide : this )
+		{
+			complement.add( nucleotide.getComplement() );
+		}
+
+		return complement;
+	}
+
+	/**
 	 * Convert the Sequence to a String representation without spaces consisting of the {@link Nucleotide Nucleotides}
 	 * abbreviations (uppercase).
 	 *
