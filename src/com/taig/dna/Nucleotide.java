@@ -78,6 +78,11 @@ public abstract class Nucleotide
 	 */
 	public abstract Nucleotide getComplement();
 
+	/**
+	 * Represents the nucleotide with it's abbreviation letter (uppercase).
+	 *
+	 * @return The nucleotide's abbreviation letter (uppercase).
+	 */
 	@Override
 	public String toString()
 	{
