@@ -10,7 +10,7 @@ Assignment
 
 Design a program that can analyze a DNA sequence for patterns.
  
-DNA consists of long strands of nucleotides. Each nucleotide has a nucleobase. There are only fourprimary nucleobases in all DNA: cytosine, guanine, adenine and thymine, abbreviated s C, G, A and Trespectively. DNA for an organism can be represented as a long sequence of just these four letters.
+DNA consists of long strands of nucleotides. Each nucleotide has a nucleobase. There are only fourprimary nucleobases in all DNA: cytosine, guanine, adenine and thymine, abbreviated as ```C```, ```G```, ```A``` and ```T```. DNA for an organism can be represented as a long sequence of just these four letters.
  
 You have to write a program that analyzes a given DNA sequence for the occurrence of specific patterns.
  
@@ -45,9 +45,9 @@ In-Office Extension:
  
 Here's some additional information about DNA:
  
-Each nucleobase has a complementary nucleobase. A and T are complementary; C and G arecomplementary. A sequence is complementary to another sequence if it has the complementarynucleobases in the reverse order. For example, the complementary sequence to TTAC is GTAA.
+Each nucleobase has a complementary nucleobase. ```A``` and ```T``` are complementary; ```C``` and ```G``` arecomplementary. A sequence is complementary to another sequence if it has the complementarynucleobases in the reverse order. For example, the complementary sequence to ```TTAC``` is ```GTAA```.
  
-Adenine and guanine belong to the double-ringed class of molecules called purines (abbreviated as R).Cytosine and thymine are pyrimidines (abbreviated as Y).
+Adenine and guanine belong to the double-ringed class of molecules called purines (abbreviated as ```R```). Cytosine and thymine are pyrimidines (abbreviated as ```Y```).
  
 Answer the following:
  
