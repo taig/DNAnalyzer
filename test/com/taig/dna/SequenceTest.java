@@ -31,7 +31,7 @@ public class SequenceTest
 	}
 
 	@Test
-	public void getComplementWithEmptySequence()
+	public void getComplementOfEmptySequence()
 	{
 		Sequence sequence = new Sequence();
 
@@ -40,7 +40,7 @@ public class SequenceTest
 	}
 
 	@Test
-	public void getComplementWithHealthySequence()
+	public void getComplementOfHealthySequence()
 	{
 		Sequence sequence = new Sequence( "acgt" );
 
@@ -48,7 +48,7 @@ public class SequenceTest
 	}
 
 	@Test
-	public void toStringWithHealthySequence()
+	public void toStringOfHealthySequence()
 	{
 		String sequence = "acgt";
 
