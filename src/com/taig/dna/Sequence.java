@@ -39,4 +39,23 @@ public class Sequence extends ArrayList<Nucleotide>
 			Nucleotide.newInstance( abbreviation );
 		}
 	}
+
+	/**
+	 * Convert the Sequence to a String representation without spaces consisting of the {@link Nucleotide Nucleotides}
+	 * abbreviations (uppercase).
+	 *
+	 * @return The Sequence's current state represented as String resource.
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder sequence = new StringBuilder();
+
+		for( Nucleotide nucleotide : this )
+		{
+			sequence.append( nucleotide );
+		}
+
+		return sequence.toString();
+	}
 }
