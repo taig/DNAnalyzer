@@ -58,7 +58,11 @@ Answer the following:
 Usage
 -----
 
-TODO
+1. Use the precompiled ```bin/dna.jar``` file or compile the sources by yourself.
+2. Run the file with your command line like this
+  - Execute the contest DNA sequence: ```java -jar path/to/dna.jar```
+  - Pipe it: ```cat path/to/my_dna | java -jar path/to/dna.jar```
+  - Traditionl: ```java -jar path/to/dna.jar "ggaatttagg"```
 
 License
 -------
