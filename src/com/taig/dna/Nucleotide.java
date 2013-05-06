@@ -16,6 +16,34 @@ public abstract class Nucleotide
 	}
 
 	/**
+	 * Create a nucleotide with its abbreviation (e.g. 'G' to instantiate {@link Guanine}).
+	 *
+	 * @param abbreviation The nucleotide's abbreviation.
+	 * @return The nucleotide object that matches the given abbreviation.
+	 * @throws IllegalArgumentException If the given abbreviation is not a valid nucleotide.
+	 */
+	public static Nucleotide newInstance( char abbreviation )
+	{
+		switch( abbreviation )
+		{
+			case 'G':
+			case 'g':
+				return new Guanine();
+			case 'A':
+			case 'a':
+				return new Adenine();
+			case 'T':
+			case 't':
+				return new Thymine();
+			case 'C':
+			case 'c':
+				return new Cytosine();
+			default:
+				throw new IllegalArgumentException( "Cannot create nucleotide from '" + abbreviation + "'." );
+		}
+	}
+
+	/**
 	 * Get the nucleotide's abbreviation (e.g. 'A' for Adenine).
 	 *
 	 * @return The nucleotide's abbreviation.
