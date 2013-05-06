@@ -31,18 +31,18 @@ public abstract class Nucleotide
 	{
 		switch( abbreviation )
 		{
-			case 'G':
-			case 'g':
-				return new Purine.Guanine();
 			case 'A':
 			case 'a':
-				return new Purine.Adenine();
-			case 'T':
-			case 't':
-				return new Pyrimidine.Thymine();
+				return new Adenine();
 			case 'C':
 			case 'c':
-				return new Pyrimidine.Cytosine();
+				return new Cytosine();
+			case 'G':
+			case 'g':
+				return new Guanine();
+			case 'T':
+			case 't':
+				return new Thymine();
 			default:
 				throw new IllegalArgumentException( "Cannot create nucleotide from '" + abbreviation + "'." );
 		}
