@@ -36,7 +36,7 @@ public class Sequence extends ArrayList<Nucleotide>
 	{
 		for( char abbreviation : sequence.toCharArray() )
 		{
-			Nucleotide.newInstance( abbreviation );
+			add( Nucleotide.newInstance( abbreviation ) );
 		}
 	}
 
