@@ -13,11 +13,14 @@ import static com.taig.dna.Nucleotide.Pyrimidine.Thymine;
  */
 public abstract class Nucleotide
 {
-	protected final char abbreviation;
+	protected final char group;
 
-	protected Nucleotide( char abbreviation )
+	protected final char molecule;
+
+	protected Nucleotide( char group, char molecule )
 	{
-		this.abbreviation = abbreviation;
+		this.group = group;
+		this.molecule = molecule;
 	}
 
 	/**
@@ -49,13 +52,23 @@ public abstract class Nucleotide
 	}
 
 	/**
+	 * Get the nucleotide's subgroup's abbreviation (e.g. 'R' for Purine).
+	 *
+	 * @return The nucleotide's subgroup's abbreviation.
+	 */
+	public char getGroup()
+	{
+		return group;
+	}
+
+	/**
 	 * Get the nucleotide's abbreviation (e.g. 'A' for Adenine).
 	 *
 	 * @return The nucleotide's abbreviation.
 	 */
-	public char getAbbreviation()
+	public char getMolecule()
 	{
-		return abbreviation;
+		return molecule;
 	}
 
 	/**
@@ -68,17 +81,17 @@ public abstract class Nucleotide
 	@Override
 	public String toString()
 	{
-		return String.valueOf( abbreviation );
+		return String.valueOf( molecule );
 	}
 
 	public static abstract class Purine extends Nucleotide
 	{
-		protected Purine( char abbreviation )
+		protected Purine( char molecule )
 		{
-			super( abbreviation );
+			super( 'R', molecule );
 		}
 
-		public static class Adenine extends Nucleotide
+		public static class Adenine extends Purine
 		{
 			public Adenine()
 			{
@@ -88,11 +101,11 @@ public abstract class Nucleotide
 			@Override
 			public Nucleotide getComplement()
 			{
-				return new Pyrimidine.Thymine();
+				return new Thymine();
 			}
 		}
 
-		public static class Guanine extends Nucleotide
+		public static class Guanine extends Purine
 		{
 			public Guanine()
 			{
@@ -102,19 +115,19 @@ public abstract class Nucleotide
 			@Override
 			public Nucleotide getComplement()
 			{
-				return new Pyrimidine.Cytosine();
+				return new Cytosine();
 			}
 		}
 	}
 
 	public static abstract class Pyrimidine extends Nucleotide
 	{
-		protected Pyrimidine( char abbreviation )
+		protected Pyrimidine( char molecule )
 		{
-			super( abbreviation );
+			super( 'Y', molecule );
 		}
 
-		public static class Cytosine extends Nucleotide
+		public static class Cytosine extends Pyrimidine
 		{
 			public Cytosine()
 			{
@@ -124,11 +137,11 @@ public abstract class Nucleotide
 			@Override
 			public Nucleotide getComplement()
 			{
-				return new Purine.Guanine();
+				return new Guanine();
 			}
 		}
 
-		public static class Thymine extends Nucleotide
+		public static class Thymine extends Pyrimidine
 		{
 			public Thymine()
 			{
