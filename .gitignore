@@ -2,8 +2,3 @@
 idea/
 bin/
 *.MF
-
-# Package Files #
-*.jar
-*.war
-*.ear
