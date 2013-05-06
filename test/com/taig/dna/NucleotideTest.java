@@ -6,6 +6,12 @@ import static org.junit.Assert.assertTrue;
 
 public class NucleotideTest
 {
+	@Test( expected = IllegalArgumentException.class )
+	public void newInstanceWithInvalidAbbreviation()
+	{
+		Nucleotide.newInstance( 'X' );
+	}
+
 	@Test
 	public void newInstanceWithValidAbbreviations()
 	{
@@ -13,11 +19,5 @@ public class NucleotideTest
 		assertTrue( Nucleotide.newInstance( 'C' ) instanceof Nucleotide.Pyrimidine.Cytosine );
 		assertTrue( Nucleotide.newInstance( 'G' ) instanceof Nucleotide.Purine.Guanine );
 		assertTrue( Nucleotide.newInstance( 'T' ) instanceof Nucleotide.Pyrimidine.Thymine );
-	}
-
-	@Test( expected = IllegalArgumentException.class )
-	public void newInstanceWithInvalidAbbreviation()
-	{
-		Nucleotide.newInstance( 'X' );
 	}
 }
