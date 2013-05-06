@@ -28,6 +28,7 @@ public class Sequence extends ArrayList<Nucleotide>
 	 * Create a Sequence with a String resource (e.g. "ggaa").
 	 *
 	 * @param sequence The DNA sequence represented as String.
+	 * @throws NullPointerException     If the given String sequence is <code>null</code>.
 	 * @throws IllegalArgumentException If one of the characters in the given sequence can not be converted to a {@link
 	 *                                  Nucleotide} object.
 	 */
