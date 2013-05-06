@@ -1,6 +1,7 @@
 *.iml
 idea/
 bin/
+*.MF
 
 # Package Files #
 *.jar
