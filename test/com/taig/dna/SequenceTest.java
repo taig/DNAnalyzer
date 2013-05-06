@@ -31,6 +31,23 @@ public class SequenceTest
 	}
 
 	@Test
+	public void getComplementWithEmptySequence()
+	{
+		Sequence sequence = new Sequence();
+
+		assertEquals( sequence, sequence.getComplement() );
+		assertTrue( sequence.getComplement().isEmpty() );
+	}
+
+	@Test
+	public void getComplementWithHealthySequence()
+	{
+		Sequence sequence = new Sequence( "acgt" );
+
+		assertEquals( sequence.getComplement(), new Sequence( "tgca" ) );
+	}
+
+	@Test
 	public void toStringWithHealthySequence()
 	{
 		String sequence = "acgt";
