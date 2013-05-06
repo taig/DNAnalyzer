@@ -1,5 +1,10 @@
 package com.taig.dna;
 
+import static com.taig.dna.Nucleotide.Purine.Adenine;
+import static com.taig.dna.Nucleotide.Purine.Guanine;
+import static com.taig.dna.Nucleotide.Pyrimidine.Cytosine;
+import static com.taig.dna.Nucleotide.Pyrimidine.Thymine;
+
 /**
  * Representation of <a href="https://en.wikipedia.org/wiki/Nucleotide">nucleotides</a> (the basic module of DNA
  * sequences).
@@ -28,16 +33,16 @@ public abstract class Nucleotide
 		{
 			case 'G':
 			case 'g':
-				return new Guanine();
+				return new Purine.Guanine();
 			case 'A':
 			case 'a':
-				return new Adenine();
+				return new Purine.Adenine();
 			case 'T':
 			case 't':
-				return new Thymine();
+				return new Pyrimidine.Thymine();
 			case 'C':
 			case 'c':
-				return new Cytosine();
+				return new Pyrimidine.Cytosine();
 			default:
 				throw new IllegalArgumentException( "Cannot create nucleotide from '" + abbreviation + "'." );
 		}
@@ -66,59 +71,75 @@ public abstract class Nucleotide
 		return String.valueOf( abbreviation );
 	}
 
-	public static class Guanine extends Nucleotide
+	public static abstract class Purine extends Nucleotide
 	{
-		public Guanine()
+		protected Purine( char abbreviation )
 		{
-			super( 'G' );
+			super( abbreviation );
 		}
 
-		@Override
-		public Nucleotide getComplement()
+		public static class Adenine extends Nucleotide
 		{
-			return new Cytosine();
+			public Adenine()
+			{
+				super( 'A' );
+			}
+
+			@Override
+			public Nucleotide getComplement()
+			{
+				return new Pyrimidine.Thymine();
+			}
+		}
+
+		public static class Guanine extends Nucleotide
+		{
+			public Guanine()
+			{
+				super( 'G' );
+			}
+
+			@Override
+			public Nucleotide getComplement()
+			{
+				return new Pyrimidine.Cytosine();
+			}
 		}
 	}
 
-	public static class Adenine extends Nucleotide
+	public static abstract class Pyrimidine extends Nucleotide
 	{
-		public Adenine()
+		protected Pyrimidine( char abbreviation )
 		{
-			super( 'A' );
+			super( abbreviation );
 		}
 
-		@Override
-		public Nucleotide getComplement()
+		public static class Cytosine extends Nucleotide
 		{
-			return new Thymine();
-		}
-	}
+			public Cytosine()
+			{
+				super( 'C' );
+			}
 
-	public static class Thymine extends Nucleotide
-	{
-		public Thymine()
-		{
-			super( 'T' );
-		}
-
-		@Override
-		public Nucleotide getComplement()
-		{
-			return new Adenine();
-		}
-	}
-
-	public static class Cytosine extends Nucleotide
-	{
-		public Cytosine()
-		{
-			super( 'C' );
+			@Override
+			public Nucleotide getComplement()
+			{
+				return new Purine.Guanine();
+			}
 		}
 
-		@Override
-		public Nucleotide getComplement()
+		public static class Thymine extends Nucleotide
 		{
-			return new Guanine();
+			public Thymine()
+			{
+				super( 'T' );
+			}
+
+			@Override
+			public Nucleotide getComplement()
+			{
+				return new Adenine();
+			}
 		}
 	}
 }
