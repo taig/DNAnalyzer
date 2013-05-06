@@ -79,6 +79,22 @@ public abstract class Nucleotide
 	public abstract Nucleotide getComplement();
 
 	/**
+	 * @param object The object that should be checked for equality with this nucleotide.
+	 * @return <code>true</code> if the given object and this nucleotide have the same abbreviation letter, otherwise
+	 *         <code>false</code>.
+	 */
+	@Override
+	public boolean equals( Object object )
+	{
+		if( object instanceof Nucleotide )
+		{
+			return molecule == ( (Nucleotide) object ).getMolecule();
+		}
+
+		return false;
+	}
+
+	/**
 	 * Represents the nucleotide with it's abbreviation letter (uppercase).
 	 *
 	 * @return The nucleotide's abbreviation letter (uppercase).
