@@ -81,14 +81,27 @@ public class CodingContest
 			CodingContest contest = new CodingContest( new Sequence( dna ) );
 
 			// Exercise 1.1.
-			System.out.println( "1.1. Is the person at risk to acquire Tiberius syndrome?" );
-			System.out.println( "> " + ( contest.hasRiskOfTiberiusSyndrome() ? "Yes" : "No" ) );
+			printExercise(
+					"1.1",
+					"Is the person at risk to acquire Tiberius syndrome?",
+					contest.hasRiskOfTiberiusSyndrome() );
 		}
 		catch( Exception exception )
 		{
 			System.out.println( "Error: " + exception.getMessage() + "." );
 			System.exit( -1 );
 		}
+	}
+
+	public static void printExercise( String id, String task, Object result )
+	{
+		System.out.println( "[" + id + "] " + task );
+		System.out.println( "> " + result );
+	}
+
+	public static void printExercise( String id, String task, boolean result )
+	{
+		printExercise( id, task, result ? "Yes" : "No" );
 	}
 
 	public static final String CONTEST_SEQUENCE = "ggaatttagggagttcccacattgcccagacgactcgtatagaattggtagttggccatg" +
