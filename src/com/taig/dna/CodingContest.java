@@ -1,5 +1,9 @@
 package com.taig.dna;
 
+/**
+ * A specially tailored class that aims to answer the contest's questions. Run the {@link #main(String...)} method to
+ * execute this application.
+ */
 public class CodingContest
 {
 	protected Sequence sequence;
@@ -35,7 +39,7 @@ public class CodingContest
 	 * Execute the command line application that prints the solutions to all given tasks.
 	 *
 	 * @param arguments Either no arguments at all (use pipe input or default fallback instead) or a DNA sequence on index
-	 *                  0.
+	 *                  <code>0</code>.
 	 */
 	public static void main( String... arguments )
 	{
