@@ -2,11 +2,10 @@ package com.taig.dna;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
 
-import static com.taig.dna.Nucleotide.Purine;
-import static com.taig.dna.Nucleotide.Pyrimidine;
 import static com.taig.dna.Nucleotide.Purine.Adenine;
 import static com.taig.dna.Nucleotide.Purine.Guanine;
 import static com.taig.dna.Nucleotide.Pyrimidine.Cytosine;
@@ -39,12 +38,20 @@ public class CodingContest
 	 * Check if the DNA sequence has at least three distinct occurrences of the sequence <code>GGG</code>. If so, the
 	 * person carrying the supplied DNA has increased risk to acquire Tiberius syndrome.
 	 *
-	 * @return <code>true</code> if the current DNA implies a high risk to acquire Tiberius syndrome, otherwise
-	 *         <code>false</code>
+	 * @return {@link Solution} to exercise 1.1.
 	 */
-	public boolean hasRiskOfTiberiusSyndrome()
+	public Solution hasRiskOfTiberiusSyndrome()
 	{
-		return sequence.count( "GGG" ) >= 3;
+		return new Solution( 1, 1, "Is the person at risk to acquire Tiberius syndrome?" )
+		{
+			@Override
+			public String getResult()
+			{
+				int occurrences = sequence.count( "GGG" );
+				return ( occurrences >= 3 ? "Yes" : "No" ) +
+					   " (" + occurrences + " occurrences, 3 occurrences indicate high risk)";
+			}
+		};
 	}
 
 	/**
@@ -52,55 +59,163 @@ public class CodingContest
 	 * <code>G</code> and is then not followed by by <code>T</code> the next two slots. If so, the person carrying the
 	 * supplied DNA has brown eyes.
 	 *
-	 * @return <code>true</code> if the current DNA signifies brown eyes, otherwise <code>false</code>
+	 * @return {@link Solution} to exercise 1.2.
 	 */
-	public boolean hasBrownEyes()
+	public Solution hasBrownEyes()
 	{
-		// TODO find out if "not followed by two Ts" is correct; assignment is not clear.
-		return sequence.contains( "CAG[C|G][^T][^T]" );
-	}
-
-	/**
-	 * Check whether the DNA sequence consists of more purine nucleotides than pyrimidine nucleotides or not.
-	 *
-	 * @return <code>true</code> if the DNA sequence consists of more purine nucleotides that pyrimidine nucleotides,
-	 *         otherwise <code>false</code>.
-	 */
-	public boolean hasMorePurinesThanPyrimidines()
-	{
-		return sequence.count( Purine.Adenine.ABBREVIATION + "|" + Purine.Guanine.ABBREVIATION ) >
-			   sequence.count( Pyrimidine.Cytosine.ABBREVIATION + "|" + Pyrimidine.Thymine.ABBREVIATION );
+		return new Solution( 1, 2, "Does this person have brown eyes?" )
+		{
+			@Override
+			public String getResult()
+			{
+				// TODO find out if "not followed by two Ts" is correct; assignment is not clear.
+				return sequence.contains( "CAG[C|G][^T][^T]" ) ? "Yes" : "No";
+			}
+		};
 	}
 
 	/**
 	 * Count the occurrences of all nucleotide types in this DNA sequence.
 	 *
-	 * @return The amount of occurrences of all nucleotide types in this DNA sequence.
+	 * @return {@link Solution} to exercise 1.3.
 	 */
-	public Map<Class<? extends Nucleotide>, Integer> countNucleotides()
+	public Solution countNucleotides()
 	{
-		Map<Class<? extends Nucleotide>, Integer> count = new HashMap<Class<? extends Nucleotide>, Integer>();
+		return new Solution( 1, 3, "How many of each nucleotides does this segment have?" )
+		{
+			@Override
+			public String getResult()
+			{
+				StringBuilder builder = new StringBuilder();
 
-		count.put( Adenine.class, sequence.count( String.valueOf( Adenine.ABBREVIATION ) ) );
-		count.put( Cytosine.class, sequence.count( String.valueOf( Cytosine.ABBREVIATION ) ) );
-		count.put( Guanine.class, sequence.count( String.valueOf( Guanine.ABBREVIATION ) ) );
-		count.put( Thymine.class, sequence.count( String.valueOf( Thymine.ABBREVIATION ) ) );
+				Nucleotide[] nucleotides = {
+						Nucleotide.newInstance( Adenine.ABBREVIATION ),
+						Nucleotide.newInstance( Cytosine.ABBREVIATION ),
+						Nucleotide.newInstance( Guanine.ABBREVIATION ),
+						Nucleotide.newInstance( Thymine.ABBREVIATION )
+				};
 
-		return count;
+				for( Nucleotide nucleotide : nucleotides )
+				{
+					builder
+							.append( nucleotide.getClass().getSimpleName() )
+							.append( ":\t" )
+							.append( sequence.count( String.valueOf( nucleotide.getMolecule() ) ) )
+							.append( "\n" );
+				}
+
+				return builder.deleteCharAt( builder.length() - 1 ).toString();
+			}
+		};
+	}
+
+	/**
+	 * @return {@link Solution} to exercise 1.4.
+	 */
+	public Solution findFirstCtagOccurrence()
+	{
+		return new Solution( 1, 4, "What's the location of the first occurrence of the sequence CTAG in the given segment?" )
+		{
+			@Override
+			public String getResult()
+			{
+				return String.valueOf( sequence.toString().indexOf( "CTAG" ) + 1 );
+			}
+		};
+	}
+
+	/**
+	 * Check whether the DNA sequence consists of more purine nucleotides than pyrimidine nucleotides or not.
+	 *
+	 * @return {@link Solution} to exercise 2.1.
+	 */
+	public Solution hasMorePurinesThanPyrimidines()
+	{
+		return new Solution( 2, 1, "Does this segment have more purines than pyrimidines?" )
+		{
+			@Override
+			public String getResult()
+			{
+				int purines = sequence.count( Adenine.ABBREVIATION + "|" + Guanine.ABBREVIATION );
+				int pyrimidines = sequence.count( Cytosine.ABBREVIATION + "|" + Thymine.ABBREVIATION );
+
+				return ( purines > pyrimidines ? "Yes" : "No" )
+					   + " (" + purines + " purines, " + pyrimidines + " pyrimidines)";
+			}
+		};
 	}
 
 	/**
 	 * Check if the DNA sequence contains a segment that consists of four purines followed by four pyrimidines. If so, the
 	 * person carrying the supplied DNA has a strong correlation with the early onset of Frømingen's dischrypsia.
 	 *
-	 * @return <code>true</code> if the DNA sequence shows evidence for the Frømingen's dischrypsia, <code>false</code>
-	 *         otherwise.
+	 * @return {@link Solution} to exercise 2.2.
 	 */
-	public boolean hasFromingenDischrypsiaEvidence()
+	public Solution hasFromingenDischrypsiaEvidence()
 	{
-		return sequence.contains(
-				"(?:" + Purine.Adenine.ABBREVIATION + "|" + Purine.Guanine.ABBREVIATION + "){4}" +
-				"(?:" + Pyrimidine.Cytosine.ABBREVIATION + "|" + Pyrimidine.Thymine.ABBREVIATION + "){4}" );
+		return new Solution( 2, 2, "Does this DNA strand show evidence for the Fromingen's dischrypsia?" )
+		{
+			@Override
+			public String getResult()
+			{
+				Matcher matcher = sequence.match(
+						"([" + Adenine.ABBREVIATION + "|" + Guanine.ABBREVIATION + "]{4}" +
+						"[" + Cytosine.ABBREVIATION + "|" + Thymine.ABBREVIATION + "]{4})" );
+
+				List<String> matches = new ArrayList<String>();
+
+				while( matcher.find() )
+				{
+					matches.add( matcher.group( 1 ).replaceFirst( "(.{4})(.{4})", "$1 $2" ) );
+				}
+
+				if( matches.size() > 0 )
+				{
+					StringBuilder builder = new StringBuilder( "Yes (affected segment(s): " );
+
+					for( String match : matches )
+					{
+						builder.append( match ).append( ", " );
+					}
+
+					return builder.delete( builder.length() - 2, builder.length() ).append( ")" ).toString();
+				}
+				else
+				{
+					return "No";
+				}
+			}
+		};
+	}
+
+	/**
+	 * Get the DNA sequence's complement.
+	 *
+	 * @return {@link Solution} to exercise 2.3.
+	 */
+	public Solution getComplementSequence()
+	{
+		return new Solution( 2, 3, "What's the complementary sequence for the entire nucleotide segment?" )
+		{
+			@Override
+			public String getResult()
+			{
+				return sequence.getComplement().toString().replaceAll( "(.{4})", "$1 " ).replaceAll( "(.{89}).", "$1\n" );
+			}
+		};
+	}
+
+	public Solution[] getSolutions()
+	{
+		return new Solution[] {
+				hasRiskOfTiberiusSyndrome(),
+				hasBrownEyes(),
+				countNucleotides(),
+				findFirstCtagOccurrence(),
+				hasMorePurinesThanPyrimidines(),
+				hasFromingenDischrypsiaEvidence(),
+				getComplementSequence()
+		};
 	}
 
 	/**
@@ -114,7 +229,6 @@ public class CodingContest
 		try
 		{
 			String dna;
-			StringBuilder builder;
 
 			// Retrieve the DNA dna from ...
 			if( arguments.length == 1 )
@@ -143,7 +257,7 @@ public class CodingContest
 						throw new IllegalArgumentException( "Invalid amount of parameters given" );
 					}
 
-					builder = new StringBuilder();
+					StringBuilder builder = new StringBuilder();
 
 					for( int character = input.read(); character != -1; character = input.read() )
 					{
@@ -161,78 +275,16 @@ public class CodingContest
 				}
 			}
 
-			// Remove whitespace from the dna.
-			dna = dna.replaceAll( "\\s", "" );
+			///////////////////////////////////////////////////////////////////////
+			//                        Exercise solutions.                        //
+			///////////////////////////////////////////////////////////////////////
 
-			// Create Sequence.
-			CodingContest contest = new CodingContest( new Sequence( dna ) );
+			CodingContest contest = new CodingContest( new Sequence( dna.replaceAll( "\\s", "" ) ) );
 
-			// Exercise solutions.
-
-			// Exercise 1.1.
-			printExercise(
-					"1.1",
-					"Is the person at risk to acquire Tiberius syndrome?",
-					contest.hasRiskOfTiberiusSyndrome() );
-
-			// Exercise 1.2.
-			printExercise(
-					"1.2",
-					"Does this person have brown eyes?",
-					contest.hasBrownEyes() );
-
-			// Exercise 1.3.
-			builder = new StringBuilder();
-
-			for( Map.Entry<Class<? extends Nucleotide>, Integer> entry : contest.countNucleotides().entrySet() )
+			for( Solution solution : contest.getSolutions() )
 			{
-				builder
-						.append( entry.getKey().getSimpleName() )
-						.append( ":\t" )
-						.append( entry.getValue() )
-						.append( "\n" );
+				System.out.println( solution );
 			}
-
-			if( builder.length() > 0 )
-			{
-				builder.deleteCharAt( builder.length() - 1 );
-			}
-
-			printExercise(
-					"1.3",
-					"How many of each nucleotides does this segment have?",
-					builder );
-
-			// Exercise 1.4.
-			printExercise(
-					"1.4",
-					"What's the location of the first occurrence of the sequence CTAG in the given segment?",
-					contest.getSequence().toString().indexOf( "CTAG" ) + 1 );
-
-			// Exercise 2.1.
-			printExercise(
-					"2.1",
-					"Does this segment have more purines than pyrimidines?",
-					contest.hasMorePurinesThanPyrimidines() );
-
-			// Exercise 2.2.
-			printExercise(
-					"2.2",
-					"Does this DNA strand show evidence for the Fromingen's dischrypsia?",
-					contest.hasFromingenDischrypsiaEvidence() );
-
-			// Exercise 2.3.
-			String complement = contest
-					.getSequence()
-					.getComplement()
-					.toString()
-					.replaceAll( "(.{4})", "$1 " )
-					.replaceAll( "(.{89}).", "$1\n" );
-
-			printExercise(
-					"2.3",
-					"What's the complementary sequence for the entire nucleotide segment?",
-					complement );
 		}
 		catch( Exception exception )
 		{
@@ -241,18 +293,35 @@ public class CodingContest
 		}
 	}
 
-	public static void printExercise( String id, String task, Object result )
+	protected abstract static class Solution
 	{
-		System.out.println( "[" + id + "] " + task );
+		public int group;
 
-		for( String line : result.toString().split( "\n" ) )
+		public int number;
+
+		public String task;
+
+		public Solution( int group, int number, String task )
 		{
-			System.out.println( "> " + line );
+			this.group = group;
+			this.number = number;
+			this.task = task;
 		}
-	}
 
-	public static void printExercise( String id, String task, boolean result )
-	{
-		printExercise( id, task, result ? "Yes" : "No" );
+		public abstract String getResult();
+
+		@Override
+		public String toString()
+		{
+			StringBuilder builder = new StringBuilder()
+					.append( "[" ).append( group ).append( "." ).append( number ).append( "] " ).append( task );
+
+			for( String line : getResult().split( "\n" ) )
+			{
+				builder.append( "\n> " ).append( line );
+			}
+
+			return builder.toString();
+		}
 	}
 }
