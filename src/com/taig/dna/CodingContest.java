@@ -137,6 +137,9 @@ public class CodingContest
 			// Create Sequence.
 			CodingContest contest = new CodingContest( new Sequence( dna ) );
 
+			// Exercise solutions.
+			StringBuilder builder;
+
 			// Exercise 1.1.
 			printExercise(
 					"1.1",
@@ -147,7 +150,7 @@ public class CodingContest
 			// unclear
 
 			// Exercise 1.3.
-			StringBuilder builder = new StringBuilder();
+			builder = new StringBuilder();
 
 			for( Map.Entry<Class<? extends Nucleotide>, Integer> entry : contest.countNucleotides().entrySet() )
 			{
@@ -173,6 +176,19 @@ public class CodingContest
 					"2.1",
 					"Does this segment have more purines than pyrimidines?",
 					contest.hasMorePurinesThanPyrimidines() );
+
+			// Exercise 2.3.
+			String complement = contest
+					.getSequence()
+					.getComplement()
+					.toString()
+					.replaceAll( "(.{4})", "$1 " )
+					.replaceAll( "(.{89}).", "$1\n" );
+
+			printExercise(
+					"2.3",
+					"What's the complementary sequence for the entire nucleotide segment?",
+					complement );
 		}
 		catch( Exception exception )
 		{
