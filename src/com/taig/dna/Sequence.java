@@ -2,6 +2,8 @@ package com.taig.dna;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A list of {@link Nucleotide Nucleotides} that allows to perform domain specific operations in order to analyze the
@@ -55,6 +57,18 @@ public class Sequence extends ArrayList<Nucleotide>
 		}
 
 		return complement;
+	}
+
+	/**
+	 * Create a {@link Matcher} that operates on the DNA sequence.
+	 *
+	 * @param regex The regular expression that is used in order to create the {@link Matcher}.
+	 * @return The created {@link Matcher} based on the given regular expression and the DNA sequence's current state.
+	 * @throws NullPointerException If the given regular expression is <code>null</code>.
+	 */
+	public Matcher match( String regex )
+	{
+		return Pattern.compile( regex, Pattern.CASE_INSENSITIVE ).matcher( toString() );
 	}
 
 	/**

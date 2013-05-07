@@ -4,15 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.util.regex.Pattern;
+
 public class SequenceTest
 {
-	@Test( expected = NullPointerException.class )
+	@Test(expected = NullPointerException.class)
 	public void constructSequenceWithNullStringArgument()
 	{
 		new Sequence( (String) null );
 	}
 
-	@Test( expected = IllegalArgumentException.class )
+	@Test(expected = IllegalArgumentException.class)
 	public void constructSequenceWithInvalidStringResource()
 	{
 		new Sequence( "acxgt" );
@@ -45,6 +47,24 @@ public class SequenceTest
 		Sequence sequence = new Sequence( "acgt" );
 
 		assertEquals( sequence.getComplement(), new Sequence( "tgca" ) );
+	}
+
+	@Test( expected = NullPointerException.class )
+	public void matchWithNullArgument()
+	{
+		new Sequence().match( null );
+	}
+
+	@Test
+	public void matchWithNotMatchingArgumentOnHealthySequence()
+	{
+		assertFalse( new Sequence( "acgt" ).match( "ca" ).find() );
+	}
+
+	@Test
+	public void matchWithMatchingArgumentOnHealthySequence()
+	{
+		assertTrue( new Sequence( "acgt" ).match( "ac" ).find() );
 	}
 
 	@Test
