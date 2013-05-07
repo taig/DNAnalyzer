@@ -166,7 +166,7 @@ public class CodingContest
 
 				while( matcher.find() )
 				{
-					matches.add( matcher.group( 1 ).replaceFirst( "(.{4})(.{4})", "$1 $2" ) );
+					matches.add( new Sequence( matcher.group( 1 ) ).toFormattedString() );
 				}
 
 				if( matches.size() > 0 )
@@ -200,7 +200,7 @@ public class CodingContest
 			@Override
 			public String getResult()
 			{
-				return sequence.getComplement().toString().replaceAll( "(.{4})", "$1 " ).replaceAll( "(.{89}).", "$1\n" );
+				return sequence.getComplement().toFormattedString();
 			}
 		};
 	}
