@@ -77,6 +77,20 @@ public class CodingContest
 	}
 
 	/**
+	 * Check if the DNA sequence contains a segment that consists of four purines followed by four pyrimidines. If so, the
+	 * person carrying the supplied DNA has a strong correlation with the early onset of Frømingen's dischrypsia.
+	 *
+	 * @return <code>true</code> if the DNA sequence shows evidence for the Frømingen's dischrypsia, <code>false</code>
+	 *         otherwise.
+	 */
+	public boolean hasFromingenDischrypsiaEvidence()
+	{
+		return sequence.count(
+				"(?:" + Purine.Adenine.ABBREVIATION + "|" + Purine.Guanine.ABBREVIATION + "){4}" +
+				"(?:" + Pyrimidine.Cytosine.ABBREVIATION + "|" + Pyrimidine.Thymine.ABBREVIATION + "){4}" ) > 0;
+	}
+
+	/**
 	 * Execute the command line application that prints the solutions to all given tasks.
 	 *
 	 * @param arguments Either no arguments at all (use pipe input or default fallback instead) or a DNA sequence on index
@@ -178,6 +192,12 @@ public class CodingContest
 					"2.1",
 					"Does this segment have more purines than pyrimidines?",
 					contest.hasMorePurinesThanPyrimidines() );
+
+			// Exercise 2.2.
+			printExercise(
+					"2.2",
+					"Does this DNA strand show evidence for the Frømingen's dischrypsia?",
+					contest.hasFromingenDischrypsiaEvidence() );
 
 			// Exercise 2.3.
 			String complement = contest
