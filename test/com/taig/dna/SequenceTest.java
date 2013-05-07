@@ -1,8 +1,8 @@
 package com.taig.dna;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class SequenceTest
 {
@@ -63,6 +63,18 @@ public class SequenceTest
 	public void matchWithMatchingArgumentOnHealthySequence()
 	{
 		assertTrue( new Sequence( "acgt" ).match( "ac" ).find() );
+	}
+
+	@Test( expected = NullPointerException.class )
+	public void countWithNullArgument()
+	{
+		new Sequence().count( null );
+	}
+
+	@Test
+	public void countOnHealthySequence()
+	{
+		assertEquals( 3, new Sequence( "acgtacgtacgt" ).count( "ac" ) );
 	}
 
 	@Test

@@ -72,6 +72,26 @@ public class Sequence extends ArrayList<Nucleotide>
 	}
 
 	/**
+	 * Count the occurrences of the given regex within the DNA sequence.
+	 *
+	 * @param regex The regular expression whose occurrences in the DNA sequence will be counted.
+	 * @return The occurrences of the given regular expression in the DNA sequence's current state.
+	 * @throws NullPointerException If the given regular expression is <code>null</code>.
+	 */
+	public int count( String regex )
+	{
+		int occurrences = 0;
+		Matcher matcher = match( regex );
+
+		while( matcher.find() )
+		{
+			occurrences++;
+		}
+
+		return occurrences;
+	}
+
+	/**
 	 * Convert the Sequence to a String representation without spaces consisting of the {@link Nucleotide Nucleotides}
 	 * abbreviations (uppercase).
 	 *
