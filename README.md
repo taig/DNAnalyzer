@@ -62,7 +62,7 @@ Usage
 2. Run the file on your command line.
   - Execute the contest DNA sequence: ```java -jar path/to/dna.jar```
   - Pipe it: ```cat path/to/my_dna | java -jar path/to/dna.jar```
-  - Traditionl: ```java -jar path/to/dna.jar "ggaatttagg"```
+  - Straight forward: ```java -jar path/to/dna.jar "ggaatttagg"```
 
 License
 -------
