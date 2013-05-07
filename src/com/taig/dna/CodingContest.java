@@ -187,6 +187,12 @@ public class CodingContest
 					"How many of each nucleotides does this segment have?",
 					builder );
 
+			// Exercise 1.4.
+			printExercise(
+					"1.4",
+					"What's the location of the first occurrence of the sequence CTAG in the given segment?",
+					contest.getSequence().toString().indexOf( "CTAG" ) + 1 );
+
 			// Exercise 2.1.
 			printExercise(
 					"2.1",
