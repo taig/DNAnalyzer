@@ -107,16 +107,20 @@ public abstract class Nucleotide
 
 	public static abstract class Purine extends Nucleotide
 	{
+		public static final char ABBREVIATION = 'R';
+
 		protected Purine( char molecule )
 		{
-			super( 'R', molecule );
+			super( ABBREVIATION, molecule );
 		}
 
 		public static class Adenine extends Purine
 		{
+			public static final char ABBREVIATION = 'A';
+
 			public Adenine()
 			{
-				super( 'A' );
+				super( ABBREVIATION );
 			}
 
 			@Override
@@ -128,9 +132,11 @@ public abstract class Nucleotide
 
 		public static class Guanine extends Purine
 		{
+			public static final char ABBREVIATION = 'G';
+
 			public Guanine()
 			{
-				super( 'G' );
+				super( ABBREVIATION );
 			}
 
 			@Override
@@ -143,16 +149,20 @@ public abstract class Nucleotide
 
 	public static abstract class Pyrimidine extends Nucleotide
 	{
+		public static final char ABBREVIATION = 'Y';
+
 		protected Pyrimidine( char molecule )
 		{
-			super( 'Y', molecule );
+			super( ABBREVIATION, molecule );
 		}
 
 		public static class Cytosine extends Pyrimidine
 		{
+			public static final char ABBREVIATION = 'C';
+
 			public Cytosine()
 			{
-				super( 'C' );
+				super( ABBREVIATION );
 			}
 
 			@Override
@@ -164,9 +174,11 @@ public abstract class Nucleotide
 
 		public static class Thymine extends Pyrimidine
 		{
+			public static final char ABBREVIATION = 'T';
+
 			public Thymine()
 			{
-				super( 'T' );
+				super( ABBREVIATION );
 			}
 
 			@Override
