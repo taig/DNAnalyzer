@@ -2,11 +2,15 @@ package com.taig.dna;
 
 import org.junit.Test;
 
+import static com.taig.dna.Nucleotide.Purine.Adenine;
+import static com.taig.dna.Nucleotide.Purine.Guanine;
+import static com.taig.dna.Nucleotide.Pyrimidine.Cytosine;
+import static com.taig.dna.Nucleotide.Pyrimidine.Thymine;
 import static org.junit.Assert.assertTrue;
 
 public class NucleotideTest
 {
-	@Test( expected = IllegalArgumentException.class )
+	@Test(expected = IllegalArgumentException.class)
 	public void newInstanceWithInvalidAbbreviation()
 	{
 		Nucleotide.newInstance( 'X' );
@@ -15,9 +19,9 @@ public class NucleotideTest
 	@Test
 	public void newInstanceWithValidAbbreviations()
 	{
-		assertTrue( Nucleotide.newInstance( 'A' ) instanceof Nucleotide.Purine.Adenine );
-		assertTrue( Nucleotide.newInstance( 'C' ) instanceof Nucleotide.Pyrimidine.Cytosine );
-		assertTrue( Nucleotide.newInstance( 'G' ) instanceof Nucleotide.Purine.Guanine );
-		assertTrue( Nucleotide.newInstance( 'T' ) instanceof Nucleotide.Pyrimidine.Thymine );
+		assertTrue( Nucleotide.newInstance( Adenine.ABBREVIATION ) instanceof Adenine );
+		assertTrue( Nucleotide.newInstance( Cytosine.ABBREVIATION ) instanceof Cytosine );
+		assertTrue( Nucleotide.newInstance( Guanine.ABBREVIATION ) instanceof Guanine );
+		assertTrue( Nucleotide.newInstance( Thymine.ABBREVIATION ) instanceof Thymine );
 	}
 }
