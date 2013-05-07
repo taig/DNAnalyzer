@@ -36,8 +36,8 @@ public class CodingContest
 	}
 
 	/**
-	 * Check if the sequence has at least three distinct occurrences of the sequence <code>GGG</code>. If so, the person
-	 * carrying the supplied DNA has increased risk to acquire Tiberius syndrome.
+	 * Check if the DNA sequence has at least three distinct occurrences of the sequence <code>GGG</code>. If so, the
+	 * person carrying the supplied DNA has increased risk to acquire Tiberius syndrome.
 	 *
 	 * @return <code>true</code> if the current DNA implies a high risk to acquire Tiberius syndrome, otherwise
 	 *         <code>false</code>
@@ -45,6 +45,19 @@ public class CodingContest
 	public boolean hasRiskOfTiberiusSyndrome()
 	{
 		return sequence.count( "GGG" ) >= 3;
+	}
+
+	/**
+	 * Check if the DNA sequence has a <code>CAG</code> segment followed by exactly one <code>C</code> or one
+	 * <code>G</code> and is then not followed by by <code>T</code> the next two slots. If so, the person carrying the
+	 * supplied DNA has brown eyes.
+	 *
+	 * @return <code>true</code> if the current DNA signifies brown eyes, otherwise <code>false</code>
+	 */
+	public boolean hasBrownEyes()
+	{
+		// TODO find out if "not followed by two Ts" is correct; assignment is not clear.
+		return sequence.count( "CAG[C|G][^T][^T]" ) > 0;
 	}
 
 	/**
@@ -163,7 +176,10 @@ public class CodingContest
 					contest.hasRiskOfTiberiusSyndrome() );
 
 			// Exercise 1.2.
-			// unclear
+			printExercise(
+					"1.2",
+					"Does this person have brown eyes?",
+					contest.hasBrownEyes() );
 
 			// Exercise 1.3.
 			builder = new StringBuilder();
