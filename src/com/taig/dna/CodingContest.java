@@ -57,7 +57,7 @@ public class CodingContest
 	public boolean hasBrownEyes()
 	{
 		// TODO find out if "not followed by two Ts" is correct; assignment is not clear.
-		return sequence.count( "CAG[C|G][^T][^T]" ) > 0;
+		return sequence.contains( "CAG[C|G][^T][^T]" );
 	}
 
 	/**
@@ -98,9 +98,9 @@ public class CodingContest
 	 */
 	public boolean hasFromingenDischrypsiaEvidence()
 	{
-		return sequence.count(
+		return sequence.contains(
 				"(?:" + Purine.Adenine.ABBREVIATION + "|" + Purine.Guanine.ABBREVIATION + "){4}" +
-				"(?:" + Pyrimidine.Cytosine.ABBREVIATION + "|" + Pyrimidine.Thymine.ABBREVIATION + "){4}" ) > 0;
+				"(?:" + Pyrimidine.Cytosine.ABBREVIATION + "|" + Pyrimidine.Thymine.ABBREVIATION + "){4}" );
 	}
 
 	/**
