@@ -1,12 +1,24 @@
 package com.taig.dna;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class SequenceTest
 {
-	@Test(expected = NullPointerException.class)
+	protected Empty empty;
+
+	protected Healthy healthy;
+
+	@Before
+	public void setUp()
+	{
+		this.empty = new Empty();
+		this.healthy = new Healthy();
+	}
+
+	@Test( expected = NullPointerException.class )
 	public void constructSequenceWithNullStringArgument()
 	{
 		new Sequence( (String) null );
@@ -21,85 +33,113 @@ public class SequenceTest
 	@Test
 	public void constructSequenceWithValidStringResource()
 	{
-		Sequence sequence = new Sequence( "acgt" );
-
-		assertEquals( 4, sequence.size() );
-		assertTrue( sequence.get( 0 ) instanceof Nucleotide.Purine.Adenine );
-		assertTrue( sequence.get( 1 ) instanceof Nucleotide.Pyrimidine.Cytosine );
-		assertTrue( sequence.get( 2 ) instanceof Nucleotide.Purine.Guanine );
-		assertTrue( sequence.get( 3 ) instanceof Nucleotide.Pyrimidine.Thymine );
+		assertEquals( healthy.dna.length(), healthy.sequence.size() );
 	}
 
 	@Test
 	public void getComplementOnEmptySequence()
 	{
-		Sequence sequence = new Sequence();
-
-		assertEquals( sequence, sequence.getComplement() );
-		assertTrue( sequence.getComplement().isEmpty() );
+		assertTrue( empty.complementSequence.isEmpty() );
 	}
 
 	@Test
 	public void getComplementOnHealthySequence()
 	{
-		Sequence sequence = new Sequence( "acgt" );
-
-		assertEquals( sequence.getComplement(), new Sequence( "tgca" ) );
+		assertNotSame( healthy.sequence, healthy.complementSequence );
+		assertEquals( healthy.sequence.size(), healthy.complementSequence.size() );
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void matchWithNullArgument()
 	{
-		new Sequence().match( null );
+		healthy.sequence.match( null );
 	}
 
 	@Test
 	public void matchWithNotMatchingArgumentOnHealthySequence()
 	{
-		assertFalse( new Sequence( "acgt" ).match( "ca" ).find() );
+		assertFalse( healthy.sequence.match( healthy.missingSegment ).find() );
 	}
 
 	@Test
 	public void matchWithMatchingArgumentOnHealthySequence()
 	{
-		assertTrue( new Sequence( "acgt" ).match( "ac" ).find() );
+		assertTrue( healthy.sequence.match( healthy.existingSegment ).find() );
 	}
 
 	@Test( expected = NullPointerException.class )
 	public void containsWithNullArgument()
 	{
-		new Sequence().contains( null );
+		healthy.sequence.contains( null );
 	}
 
 	@Test
 	public void containsWithNotMatchingArgumentOnHealthySequence()
 	{
-		assertFalse( new Sequence( "acgt" ).contains( "at" ) );
+		assertFalse( healthy.sequence.contains( healthy.missingSegment ) );
 	}
 
 	@Test
 	public void containsWithMatchingArgumentOnHealthySequence()
 	{
-		assertTrue( new Sequence( "acgt" ).contains( "cg" ) );
+		assertTrue( healthy.sequence.contains( healthy.existingSegment ) );
 	}
 
 	@Test( expected = NullPointerException.class )
 	public void countWithNullArgument()
 	{
-		new Sequence().count( null );
+		healthy.sequence.count( null );
 	}
 
 	@Test
-	public void countOnHealthySequence()
+	public void countWithNotMatchingArgumentOnHealthySequence()
 	{
-		assertEquals( 3, new Sequence( "acgtacgtacgt" ).count( "ac" ) );
+		assertEquals( 0, new Sequence( healthy.dna + healthy.dna ).count( healthy.missingSegment ) );
+	}
+
+	@Test
+	public void countWithMatchingArgumentOnHealthySequence()
+	{
+		assertEquals( 2, new Sequence( healthy.dna + healthy.dna ).count( healthy.existingSegment ) );
 	}
 
 	@Test
 	public void toStringOnHealthySequence()
 	{
-		String sequence = "acgt";
+		assertEquals( healthy.sequence.toString(), healthy.dna.toUpperCase() );
+	}
 
-		assertEquals( new Sequence( sequence ).toString(), sequence.toUpperCase() );
+	protected static class Empty
+	{
+		public String dna, complementDna;
+
+		public Sequence sequence, complementSequence;
+
+		public Empty()
+		{
+			this( "", "" );
+		}
+
+		protected Empty( String dna, String complement )
+		{
+			this.dna = dna;
+			this.sequence = new Sequence( dna );
+			this.complementDna = complement;
+			this.complementSequence = new Sequence( complement );
+		}
+	}
+
+	protected static class Healthy extends Empty
+	{
+		public String missingSegment;
+
+		public String existingSegment;
+
+		public Healthy()
+		{
+			super( "acgt", "tgca" );
+			this.missingSegment = "at";
+			this.existingSegment = "ac";
+		}
 	}
 }
