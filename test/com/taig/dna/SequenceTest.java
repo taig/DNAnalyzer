@@ -104,6 +104,20 @@ public class SequenceTest
 	}
 
 	@Test
+	public void toFormattedStringOnEmptySequence()
+	{
+		assertEquals( empty.sequence.toFormattedString(), "" );
+	}
+
+	@Test
+	public void toFormattedStringOnHealthySequence()
+	{
+		assertEquals(
+				healthy.dna.toUpperCase() + " " + healthy.dna.toUpperCase(),
+				new Sequence( healthy.dna + healthy.dna ).toFormattedString() );
+	}
+
+	@Test
 	public void toStringOnEmptySequence()
 	{
 		assertEquals( empty.sequence.toString(), "" );

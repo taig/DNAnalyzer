@@ -105,6 +105,16 @@ public class Sequence extends ArrayList<Nucleotide>
 	}
 
 	/**
+	 * Convert the Sequence to a human readable String representation.
+	 *
+	 * @return The Sequence's current state represented as a human readable String resource.
+	 */
+	public String toFormattedString()
+	{
+		return toString().replaceAll( "(.{4})", "$1 " ).replaceAll( "(.{89}).", "$1\n" ).trim();
+	}
+
+	/**
 	 * Convert the Sequence to a String representation without spaces consisting of the {@link Nucleotide Nucleotides}
 	 * abbreviations (uppercase).
 	 *
