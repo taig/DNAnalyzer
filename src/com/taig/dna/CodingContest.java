@@ -46,6 +46,32 @@ public class CodingContest
 	}
 
 	/**
+	 * Check whether the DNA sequence consists of more purine nucleotides than pyrimidine nucleotides or not.
+	 *
+	 * @return <code>true</code> if the DNA sequence consists of more purine nucleotides that pyrimidine nucleotides,
+	 *         otherwise <code>false</code>.
+	 */
+	public boolean hasMorePurinesThanPyrimidines()
+	{
+		int purines = 0, pyrimidines = 0;
+
+		for( Nucleotide nucleotide : sequence )
+		{
+			switch( nucleotide.getGroup() )
+			{
+				case Purine.ABBREVIATION:
+					purines++;
+					break;
+				case Pyrimidine.ABBREVIATION:
+					pyrimidines++;
+					break;
+			}
+		}
+
+		return purines > pyrimidines;
+	}
+
+	/**
 	 * Count the occurrences of all nucleotide types in this DNA sequence.
 	 *
 	 * @return The amount of occurrences of all nucleotide types in this DNA sequence.
@@ -141,6 +167,12 @@ public class CodingContest
 					"1.3",
 					"How many of each nucleotides does this segment have?",
 					builder );
+
+			// Exercise 2.1.
+			printExercise(
+					"2.1",
+					"Does this segment have more purines than pyrimidines?",
+					contest.hasMorePurinesThanPyrimidines() );
 		}
 		catch( Exception exception )
 		{
