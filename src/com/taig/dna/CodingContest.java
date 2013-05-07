@@ -3,6 +3,11 @@ package com.taig.dna;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.taig.dna.Nucleotide.Purine.Adenine;
+import static com.taig.dna.Nucleotide.Purine.Guanine;
+import static com.taig.dna.Nucleotide.Pyrimidine.Cytosine;
+import static com.taig.dna.Nucleotide.Pyrimidine.Thymine;
+
 /**
  * A specially tailored class that aims to answer the contest's questions. Run the {@link #main(String...)} method to
  * execute this application.
@@ -47,10 +52,10 @@ public class CodingContest
 	{
 		Map<Class<? extends Nucleotide>, Integer> count = new HashMap<Class<? extends Nucleotide>, Integer>();
 
-		count.put( Nucleotide.Purine.Adenine.class, sequence.count( "A" ) );
-		count.put( Nucleotide.Pyrimidine.Cytosine.class, sequence.count( "C" ) );
-		count.put( Nucleotide.Purine.Guanine.class, sequence.count( "G" ) );
-		count.put( Nucleotide.Pyrimidine.Thymine.class, sequence.count( "T" ) );
+		count.put( Adenine.class, sequence.count( "A" ) );
+		count.put( Cytosine.class, sequence.count( "C" ) );
+		count.put( Guanine.class, sequence.count( "G" ) );
+		count.put( Thymine.class, sequence.count( "T" ) );
 
 		return count;
 	}
