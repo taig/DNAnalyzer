@@ -36,7 +36,7 @@ This is a 1000-nucleobase long segment of the DNA sequence of a 35-year-old fema
  
 Answer the following questions:
  
-1. Three distinct sequences of ```GGG``` within any 1000-nucleobases signify an elevated risk to acquiring Tiberius syndrome. Based on the given DNA segment, is this female at suchrisk?
+1. Three distinct sequences of ```GGG``` within any 1000-nucleobases signify an elevated risk to acquiring Tiberius syndrome. Based on the given DNA segment, is this female at such risk?
 2. The sequence ```CAG``` followed by exactly one ```C``` or one ```G``` and then not followed by Tin the next 2 slots signifies brown eyes. Does this female have brown eyes?
 3. How many of each nucleobase does this segment have?
 4. What's the location of the first occurrence of the sequence ```CTAG``` in the given segment (assume nucleobases are numbered from 1 to 1000).
