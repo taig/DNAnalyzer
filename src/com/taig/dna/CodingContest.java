@@ -20,6 +20,18 @@ public class CodingContest
 	}
 
 	/**
+	 * Check if the sequence has at least three distinct occurrences of the sequence <code>GGG</code>. If so, the person
+	 * carrying the supplied DNA has increased risk to acquire Tiberius syndrome.
+	 *
+	 * @return <code>true</code> if the current DNA implies a high risk to acquire Tiberius syndrome, otherwise
+	 *         <code>false</code>
+	 */
+	public boolean hasRiskOfTiberiusSyndrome()
+	{
+		return sequence.count( "GGG" ) >= 3;
+	}
+
+	/**
 	 * Execute the command line application that prints the solutions to all given tasks.
 	 *
 	 * @param arguments Either no arguments at all (use pipe input or default fallback instead) or a DNA sequence on index
@@ -66,7 +78,11 @@ public class CodingContest
 			dna = dna.replaceAll( "\\s", "" );
 
 			// Create Sequence.
-			Sequence sequence = new Sequence( dna );
+			CodingContest contest = new CodingContest( new Sequence( dna ) );
+
+			// Exercise 1.1.
+			System.out.println( "1.1. Is the person at risk to acquire Tiberius syndrome?" );
+			System.out.println( "> " + ( contest.hasRiskOfTiberiusSyndrome() ? "Yes" : "No" ) );
 		}
 		catch( Exception exception )
 		{
