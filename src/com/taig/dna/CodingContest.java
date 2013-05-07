@@ -1,5 +1,8 @@
 package com.taig.dna;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A specially tailored class that aims to answer the contest's questions. Run the {@link #main(String...)} method to
  * execute this application.
@@ -33,6 +36,23 @@ public class CodingContest
 	public boolean hasRiskOfTiberiusSyndrome()
 	{
 		return sequence.count( "GGG" ) >= 3;
+	}
+
+	/**
+	 * Count the occurrences of all nucleotide types in this DNA sequence.
+	 *
+	 * @return The amount of occurrences of all nucleotide types in this DNA sequence.
+	 */
+	public Map<Class<? extends Nucleotide>, Integer> countNucleotides()
+	{
+		Map<Class<? extends Nucleotide>, Integer> count = new HashMap<Class<? extends Nucleotide>, Integer>();
+
+		count.put( Nucleotide.Purine.Adenine.class, sequence.count( "A" ) );
+		count.put( Nucleotide.Pyrimidine.Cytosine.class, sequence.count( "C" ) );
+		count.put( Nucleotide.Purine.Guanine.class, sequence.count( "G" ) );
+		count.put( Nucleotide.Pyrimidine.Thymine.class, sequence.count( "T" ) );
+
+		return count;
 	}
 
 	/**
@@ -89,6 +109,31 @@ public class CodingContest
 					"1.1",
 					"Is the person at risk to acquire Tiberius syndrome?",
 					contest.hasRiskOfTiberiusSyndrome() );
+
+			// Exercise 1.2.
+			// unclear
+
+			// Exercise 1.3.
+			StringBuilder builder = new StringBuilder();
+
+			for( Map.Entry<Class<? extends Nucleotide>, Integer> entry : contest.countNucleotides().entrySet() )
+			{
+				builder
+						.append( entry.getKey().getSimpleName() )
+						.append( ":\t" )
+						.append( entry.getValue() )
+						.append( "\n" );
+			}
+
+			if( builder.length() > 0 )
+			{
+				builder.deleteCharAt( builder.length() - 1 );
+			}
+
+			printExercise(
+					"1.3",
+					"How many of each nucleotides does this segment have?",
+					builder );
 		}
 		catch( Exception exception )
 		{
@@ -100,7 +145,11 @@ public class CodingContest
 	public static void printExercise( String id, String task, Object result )
 	{
 		System.out.println( "[" + id + "] " + task );
-		System.out.println( "> " + result );
+
+		for( String line : result.toString().split( "\n" ) )
+		{
+			System.out.println( "> " + line );
+		}
 	}
 
 	public static void printExercise( String id, String task, boolean result )
