@@ -47,7 +47,7 @@ public class SequenceTest
 		assertEquals( sequence.getComplement(), new Sequence( "tgca" ) );
 	}
 
-	@Test( expected = NullPointerException.class )
+	@Test(expected = NullPointerException.class)
 	public void matchWithNullArgument()
 	{
 		new Sequence().match( null );
@@ -63,6 +63,24 @@ public class SequenceTest
 	public void matchWithMatchingArgumentOnHealthySequence()
 	{
 		assertTrue( new Sequence( "acgt" ).match( "ac" ).find() );
+	}
+
+	@Test( expected = NullPointerException.class )
+	public void containsWithNullArgument()
+	{
+		new Sequence().contains( null );
+	}
+
+	@Test
+	public void containsWithNotMatchingArgumentOnHealthySequence()
+	{
+		assertFalse( new Sequence( "acgt" ).contains( "at" ) );
+	}
+
+	@Test
+	public void containsWithMatchingArgumentOnHealthySequence()
+	{
+		assertTrue( new Sequence( "acgt" ).contains( "cg" ) );
 	}
 
 	@Test( expected = NullPointerException.class )

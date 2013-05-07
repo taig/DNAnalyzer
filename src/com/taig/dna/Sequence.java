@@ -72,7 +72,20 @@ public class Sequence extends ArrayList<Nucleotide>
 	}
 
 	/**
-	 * Count the occurrences of the given regex within the DNA sequence.
+	 * Check if the given regular expression occurs in the DNA sequence or not.
+	 *
+	 * @param regex The regular expression to look for within the DNA sequence.
+	 * @return <code>true</code> if the given regular expression exists within the DNA sequence at least one, otherwise
+	 *         <code>false</code>.
+	 * @throws NullPointerException If the given regular expression is <code>null</code>.
+	 */
+	public boolean contains( String regex )
+	{
+		return match( regex ).find();
+	}
+
+	/**
+	 * Count the occurrences of the given regular expression within the DNA sequence.
 	 *
 	 * @param regex The regular expression whose occurrences in the DNA sequence will be counted.
 	 * @return The occurrences of the given regular expression in the DNA sequence's current state.
