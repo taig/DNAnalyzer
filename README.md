@@ -10,7 +10,7 @@ Assignment
 
 Design a program that can analyze a DNA sequence for patterns.
  
-DNA consists of long strands of nucleotides. Each nucleotide has a nucleobase. There are only fourprimary nucleobases in all DNA: cytosine, guanine, adenine and thymine, abbreviated s C, G, A and Trespectively. DNA for an organism can be represented as a long sequence of just these four letters.
+DNA consists of long strands of nucleotides. Each nucleotide has a nucleobase. There are only fourprimary nucleobases in all DNA: cytosine, guanine, adenine and thymine, abbreviated as ```C```, ```G```, ```A``` and ```T```. DNA for an organism can be represented as a long sequence of just these four letters.
  
 You have to write a program that analyzes a given DNA sequence for the occurrence of specific patterns.
  
@@ -36,7 +36,7 @@ This is a 1000-nucleobase long segment of the DNA sequence of a 35-year-old fema
  
 Answer the following questions:
  
-1. Three distinct sequences of ```GGG``` within any 1000-nucleobases signify an elevated riskto acquiring Tyberius syndrome. Based on the given DNA segment, is this female at suchrisk?
+1. Three distinct sequences of ```GGG``` within any 1000-nucleobases signify an elevated risk to acquiring Tiberius syndrome. Based on the given DNA segment, is this female at such risk?
 2. The sequence ```CAG``` followed by exactly one ```C``` or one ```G``` and then not followed by Tin the next 2 slots signifies brown eyes. Does this female have brown eyes?
 3. How many of each nucleobase does this segment have?
 4. What's the location of the first occurrence of the sequence ```CTAG``` in the given segment (assume nucleobases are numbered from 1 to 1000).
@@ -45,9 +45,9 @@ In-Office Extension:
  
 Here's some additional information about DNA:
  
-Each nucleobase has a complementary nucleobase. A and T are complementary; C and G arecomplementary. A sequence is complementary to another sequence if it has the complementarynucleobases in the reverse order. For example, the complementary sequence to TTAC is GTAA.
+Each nucleobase has a complementary nucleobase. ```A``` and ```T``` are complementary; ```C``` and ```G``` arecomplementary. A sequence is complementary to another sequence if it has the complementarynucleobases in the reverse order. For example, the complementary sequence to ```TTAC``` is ```GTAA```.
  
-Adenine and guanine belong to the double-ringed class of molecules called purines (abbreviated as R).Cytosine and thymine are pyrimidines (abbreviated as Y).
+Adenine and guanine belong to the double-ringed class of molecules called purines (abbreviated as ```R```). Cytosine and thymine are pyrimidines (abbreviated as ```Y```).
  
 Answer the following:
  
@@ -58,7 +58,11 @@ Answer the following:
 Usage
 -----
 
-TODO
+1. Use the precompiled ```bin/dna.jar``` file or compile the sources by yourself.
+2. Run the file on your command line.
+  - Execute the contest DNA sequence: ```java -jar path/to/dna.jar```
+  - Pipe it: ```cat path/to/my_dna | java -jar path/to/dna.jar```
+  - Straight forward: ```java -jar path/to/dna.jar "ggaatttagg"```
 
 License
 -------
