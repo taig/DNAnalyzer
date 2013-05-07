@@ -55,22 +55,8 @@ public class CodingContest
 	 */
 	public boolean hasMorePurinesThanPyrimidines()
 	{
-		int purines = 0, pyrimidines = 0;
-
-		for( Nucleotide nucleotide : sequence )
-		{
-			switch( nucleotide.getGroup() )
-			{
-				case Purine.ABBREVIATION:
-					purines++;
-					break;
-				case Pyrimidine.ABBREVIATION:
-					pyrimidines++;
-					break;
-			}
-		}
-
-		return purines > pyrimidines;
+		return sequence.count( Purine.Adenine.ABBREVIATION + "|" + Purine.Guanine.ABBREVIATION ) >
+			   sequence.count( Pyrimidine.Cytosine.ABBREVIATION + "|" + Pyrimidine.Thymine.ABBREVIATION );
 	}
 
 	/**
