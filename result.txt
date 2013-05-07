@@ -1,18 +1,18 @@
 [1.1] Is the person at risk to acquire Tiberius syndrome?
-> Yes
+> Yes (14 occurrences, 3 occurrences indicate high risk)
 [1.2] Does this person have brown eyes?
 > No
 [1.3] How many of each nucleotides does this segment have?
+> Adenine:	248
 > Cytosine:	265
 > Guanine:	259
-> Adenine:	248
 > Thymine:	228
 [1.4] What's the location of the first occurrence of the sequence CTAG in the given segment?
 > 196
 [2.1] Does this segment have more purines than pyrimidines?
-> Yes
+> Yes (507 purines, 493 pyrimidines)
 [2.2] Does this DNA strand show evidence for the Fromingen's dischrypsia?
-> Yes
+> Yes (affected segment(s): GGAG TTCC, GGGG CCCC, GGGA CTTT, AAAA TTCC, GGAA TCCT, AGGG TCCC)
 [2.3] What's the complementary sequence for the entire nucleotide segment?
 > CCTT AAAT CCCT CAAG GGTG TAAC GGGT CTGC TGAG CATA TCTT AACC ATCA ACCG GTAC GCAG GTAT AGTG
 > TTTC TGTG TCAG GGAC CGGC TGGT GTGA CATT GGTG CTTA TACG GGAT AGCA TGCC CAAC CCTA CGTG AAAA
