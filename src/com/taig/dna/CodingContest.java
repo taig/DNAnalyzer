@@ -137,7 +137,7 @@ public class CodingContest
 						builder.append( (char) character );
 					}
 
-					dna = input.toString();
+					dna = builder.toString();
 				}
 				finally
 				{
