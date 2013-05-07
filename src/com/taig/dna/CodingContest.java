@@ -202,7 +202,7 @@ public class CodingContest
 			// Exercise 2.2.
 			printExercise(
 					"2.2",
-					"Does this DNA strand show evidence for the Frømingen's dischrypsia?",
+					"Does this DNA strand show evidence for the Fromingen's dischrypsia?",
 					contest.hasFromingenDischrypsiaEvidence() );
 
 			// Exercise 2.3.
