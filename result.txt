@@ -1,10 +1,12 @@
 [1.1] Is the person at risk to acquire Tiberius syndrome?
 > Yes
+[1.2] Does this person have brown eyes?
+> No
 [1.3] How many of each nucleotides does this segment have?
+> Cytosine:	265
 > Guanine:	259
 > Adenine:	248
 > Thymine:	228
-> Cytosine:	265
 [1.4] What's the location of the first occurrence of the sequence CTAG in the given segment?
 > 196
 [2.1] Does this segment have more purines than pyrimidines?
