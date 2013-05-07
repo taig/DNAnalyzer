@@ -3,6 +3,8 @@ package com.taig.dna;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.taig.dna.Nucleotide.Purine;
+import static com.taig.dna.Nucleotide.Pyrimidine;
 import static com.taig.dna.Nucleotide.Purine.Adenine;
 import static com.taig.dna.Nucleotide.Purine.Guanine;
 import static com.taig.dna.Nucleotide.Pyrimidine.Cytosine;
@@ -52,10 +54,10 @@ public class CodingContest
 	{
 		Map<Class<? extends Nucleotide>, Integer> count = new HashMap<Class<? extends Nucleotide>, Integer>();
 
-		count.put( Adenine.class, sequence.count( "A" ) );
-		count.put( Cytosine.class, sequence.count( "C" ) );
-		count.put( Guanine.class, sequence.count( "G" ) );
-		count.put( Thymine.class, sequence.count( "T" ) );
+		count.put( Adenine.class, sequence.count( String.valueOf( Adenine.ABBREVIATION ) ) );
+		count.put( Cytosine.class, sequence.count( String.valueOf( Cytosine.ABBREVIATION ) ) );
+		count.put( Guanine.class, sequence.count( String.valueOf( Guanine.ABBREVIATION ) ) );
+		count.put( Thymine.class, sequence.count( String.valueOf( Thymine.ABBREVIATION ) ) );
 
 		return count;
 	}

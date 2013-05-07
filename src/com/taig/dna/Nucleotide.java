@@ -32,19 +32,15 @@ public abstract class Nucleotide
 	 */
 	public static Nucleotide newInstance( char abbreviation )
 	{
-		switch( abbreviation )
+		switch( Character.toUpperCase( abbreviation ) )
 		{
-			case 'A':
-			case 'a':
+			case Adenine.ABBREVIATION:
 				return new Adenine();
-			case 'C':
-			case 'c':
+			case Cytosine.ABBREVIATION:
 				return new Cytosine();
-			case 'G':
-			case 'g':
+			case Guanine.ABBREVIATION:
 				return new Guanine();
-			case 'T':
-			case 't':
+			case Thymine.ABBREVIATION:
 				return new Thymine();
 			default:
 				throw new IllegalArgumentException( "Cannot create nucleotide from '" + abbreviation + "'." );
