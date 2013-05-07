@@ -69,7 +69,29 @@ public class CodingContest
 			public String getResult()
 			{
 				// TODO find out if "not followed by two Ts" is correct; assignment is not clear.
-				return sequence.contains( "CAG[C|G][^T][^T]" ) ? "Yes" : "No";
+				List<String> matches = new ArrayList<String>();
+				Matcher matcher = sequence.match( "(CAG[C|G][^T][^T])" );
+
+				while( matcher.find() )
+				{
+					matches.add( new Sequence( matcher.group( 1 ) ).toFormattedString() );
+				}
+
+				if( matches.size() > 0 )
+				{
+					StringBuilder builder = new StringBuilder( "Yes (respective segment(s): " );
+
+					for( String match : matches )
+					{
+						builder.append( match ).append( ", " );
+					}
+
+					return builder.delete( builder.length() - 2, builder.length() ).append( ")" ).toString();
+				}
+				else
+				{
+					return "No";
+				}
 			}
 		};
 	}
@@ -158,11 +180,10 @@ public class CodingContest
 			@Override
 			public String getResult()
 			{
+				List<String> matches = new ArrayList<String>();
 				Matcher matcher = sequence.match(
 						"([" + Adenine.ABBREVIATION + "|" + Guanine.ABBREVIATION + "]{4}" +
 						"[" + Cytosine.ABBREVIATION + "|" + Thymine.ABBREVIATION + "]{4})" );
-
-				List<String> matches = new ArrayList<String>();
 
 				while( matcher.find() )
 				{
