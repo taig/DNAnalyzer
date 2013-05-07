@@ -58,8 +58,8 @@ Answer the following:
 Usage
 -----
 
-1. Use the precompiled ```bin/dna.jar``` file or compile the sources by yourself.
-2. Run the file on your command line.
+1. Compile the ```src``` files to an executable.
+2. Run the application on your command line.
   - Straight forward: ```java -jar path/to/dna.jar "ggaatttagg"```
   - Pipe it: ```cat path/to/my_dna | java -jar path/to/dna.jar```
   - Use a file path: ```java -jar path/to/dna.jar -i path/to/my_dna```
