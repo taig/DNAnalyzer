@@ -1,5 +1,7 @@
 package com.taig.dna;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,36 +101,51 @@ public class CodingContest
 		try
 		{
 			String dna;
+			StringBuilder builder;
 
-			// Retrieve the DNA dna from the ...
+			// Retrieve the DNA dna from ...
 			if( arguments.length == 1 )
 			{
-				// ... command line arguments.
+				// ... the command line arguments.
 				dna = arguments[0];
 			}
-			else if( arguments.length == 0 )
+			else
 			{
-				if( System.in.available() > 0 )
-				{
-					// ... piped input.
-					StringBuilder input = new StringBuilder();
+				InputStream input = null;
 
-					for( int character = System.in.read(); character != -1; character = System.in.read() )
+				try
+				{
+					if( arguments.length == 0 )
 					{
-						input.append( (char) character );
+						// ... piped input.
+						input = System.in;
+					}
+					else if( arguments.length == 2 && arguments[0].equals( "-i" ) )
+					{
+						// ... file input.
+						input = new FileInputStream( arguments[1] );
+					}
+					else
+					{
+						throw new IllegalArgumentException( "Invalid amount of parameters given" );
+					}
+
+					builder = new StringBuilder();
+
+					for( int character = input.read(); character != -1; character = input.read() )
+					{
+						builder.append( (char) character );
 					}
 
 					dna = input.toString();
 				}
-				else
+				finally
 				{
-					// ... default fallback dna.
-					dna = CONTEST_SEQUENCE;
+					if( input != null )
+					{
+						input.close();
+					}
 				}
-			}
-			else
-			{
-				throw new IllegalArgumentException( "Invalid amount of parameters given" );
 			}
 
 			// Remove whitespace from the dna.
@@ -138,7 +155,6 @@ public class CodingContest
 			CodingContest contest = new CodingContest( new Sequence( dna ) );
 
 			// Exercise solutions.
-			StringBuilder builder;
 
 			// Exercise 1.1.
 			printExercise(
@@ -211,22 +227,4 @@ public class CodingContest
 	{
 		printExercise( id, task, result ? "Yes" : "No" );
 	}
-
-	public static final String CONTEST_SEQUENCE = "ggaatttagggagttcccacattgcccagacgactcgtatagaattggtagttggccatg" +
-												  "cgtccatatcacaaagacacagtccctggccgaccacactgtaaccacgaatatgcccta" +
-												  "tcgtacgggttgggatgcacttttgagttatacgcgctcgaatctatgcccagtacacat" +
-												  "ggtgccgacacctaactaggcagtgaggggcactcagacctgacatgagcggaagaaaga" +
-												  "acccgcgggggccccacgacgtagcggcgacggctcaaccaatgccccgcccctttcata" +
-												  "aggccaagcggactgggctttcgcccgagtctaaacccactgtatttaccattcatagtc" +
-												  "aacagagggactttcaaaattcctaaactggttactgactaagaggaatcctcgcgctaa" +
-												  "tgaagacaacctccatagaggtcaaatggcgcgcagttgacttcagtattgaccttcttc" +
-												  "agggtcccccatctttgatacttcacttatggacccggccaccgtgagttgaatcccggc" +
-												  "gtccctcgcgtccccaacacagacaatatttttacgtgtccaagggcggaaagtgacgag" +
-												  "gtgagaactggcgccgcgagaccggcccgatttctaataggcgggatagagatctgcccg" +
-												  "acgcatttcacttgtagtcactcacggtatgactgtgcatgcactgaccgtcgctggcgt" +
-												  "gtctttaatttaagctaggcttgacgtggagtgcagaatgaccatgttcaaggtgcttcg" +
-												  "gggctatatacttgggataaacgcgatcctgcggagtagcgtcgagaacaccgactgccg" +
-												  "aatgtacaatccgcgtgacaatgccgaggctcgagatatcacttgaactgcgggcgaatc" +
-												  "gattcgagagcccgatcgttaacaagtcgtcggctgtagccaataatatcttggttttag" +
-												  "atcttgagtgtgggggcgtttacttaaccatccgaacgcg";
 }
