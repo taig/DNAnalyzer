@@ -10,7 +10,7 @@ Assignment
 
 Design a program that can analyze a DNA sequence for patterns.
  
-DNA consists of long strands of nucleotides. Each nucleotide has a nucleobase. There are only fourprimary nucleobases in all DNA: cytosine, guanine, adenine and thymine, abbreviated as ```C```, ```G```, ```A``` and ```T```. DNA for an organism can be represented as a long sequence of just these four letters.
+DNA consists of long strands of nucleotides. Each nucleotide has a nucleobase. There are only four primary nucleobases in all DNA: cytosine, guanine, adenine and thymine, abbreviated as ```C```, ```G```, ```A``` and ```T```. DNA for an organism can be represented as a long sequence of just these four letters.
  
 You have to write a program that analyzes a given DNA sequence for the occurrence of specific patterns.
  
@@ -45,14 +45,14 @@ In-Office Extension:
  
 Here's some additional information about DNA:
  
-Each nucleobase has a complementary nucleobase. ```A``` and ```T``` are complementary; ```C``` and ```G``` arecomplementary. A sequence is complementary to another sequence if it has the complementarynucleobases in the reverse order. For example, the complementary sequence to ```TTAC``` is ```GTAA```.
+Each nucleobase has a complementary nucleobase. ```A``` and ```T``` are complementary; ```C``` and ```G``` are complementary. A sequence is complementary to another sequence if it has the complementary nucleobases in the reverse order. For example, the complementary sequence to ```TTAC``` is ```GTAA```.
  
 Adenine and guanine belong to the double-ringed class of molecules called purines (abbreviated as ```R```). Cytosine and thymine are pyrimidines (abbreviated as ```Y```).
  
 Answer the following:
  
 1. Does this segment have more purines than pyrimidines?
-2. Four purines followed by four pyrimidines have been shown to have a strong correlationwith the early onset of Frømingen's dischrypsia. Does this DNA strand show evidence forthis correlation?
+2. Four purines followed by four pyrimidines have been shown to have a strong correlation with the early onset of Frømingen's dischrypsia. Does this DNA strand show evidence for this correlation?
 3. What's the complementary sequence for the entire 1000-nucleobase segment?
 
 Usage
