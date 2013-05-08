@@ -12,7 +12,7 @@
 [2.1] Does this segment have more purines than pyrimidines?
 > Yes (507 R, 493 Y)
 [2.2] Does this DNA strand show evidence for the Fromingen's dischrypsia?
-> Yes (affected segment(s): GGAG TTCC, GGGG CCCC, GGGA CTTT, AAAA TTCC, GGAA TCCT, AGGG TCCC)
+> Yes (affected segment(s): [GGAG TTCC, GGGG CCCC, GGGA CTTT, AAAA TTCC, GGAA TCCT, AGGG TCCC])
 [2.3] What's the complementary sequence for the entire nucleotide segment?
 > CCTT AAAT CCCT CAAG GGTG TAAC GGGT CTGC TGAG CATA TCTT AACC ATCA ACCG GTAC GCAG GTAT AGTG
 > TTTC TGTG TCAG GGAC CGGC TGGT GTGA CATT GGTG CTTA TACG GGAT AGCA TGCC CAAC CCTA CGTG AAAA
