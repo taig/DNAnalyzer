@@ -1,13 +1,19 @@
 package com.taig.dna;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class CodingContestTest
 {
+	public CodingContest contest( String dna )
+	{
+		return new CodingContest( new Sequence( dna.replaceAll( "\\s", "" ) ) );
+	}
+
 	@Test
 	public void hasRiskOfTiberiusSyndromeOnUnaffectedSequence()
 	{
-		throw new UnsupportedOperationException();
+		assertFalse( contest( "AGGG TCTT GGAA TCCT AAGT" ).hasBrownEyes().getResult() );
 	}
 
 	@Test
