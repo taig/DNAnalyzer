@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SequenceTest
 {
@@ -24,7 +25,7 @@ public class SequenceTest
 		new Sequence( (String) null );
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test( expected = IllegalArgumentException.class )
 	public void constructSequenceWithInvalidStringResource()
 	{
 		new Sequence( "acxgt" );
@@ -49,22 +50,42 @@ public class SequenceTest
 		assertEquals( healthy.sequence.size(), healthy.complementSequence.size() );
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void matchWithNullArgument()
+	@Test( expected = NullPointerException.class )
+	public void getMatcherWithNullArgument()
 	{
-		healthy.sequence.match( null );
+		healthy.sequence.getMatcher( null );
 	}
 
 	@Test
-	public void matchWithNotMatchingArgumentOnHealthySequence()
+	public void getMatcherWithNotMatchingArgumentOnHealthySequence()
 	{
-		assertFalse( healthy.sequence.match( healthy.missingSegment ).find() );
+		assertFalse( healthy.sequence.getMatcher( healthy.missingSegment ).find() );
 	}
 
 	@Test
-	public void matchWithMatchingArgumentOnHealthySequence()
+	public void getMatcherWithMatchingArgumentOnHealthySequence()
 	{
-		assertTrue( healthy.sequence.match( healthy.existingSegment ).find() );
+		assertTrue( healthy.sequence.getMatcher( healthy.existingSegment ).find() );
+	}
+
+	@Test( expected = NullPointerException.class )
+	public void getMatchesWithNullArgument()
+	{
+		healthy.sequence.getMatches( null );
+	}
+
+	@Test
+	public void getMatchesWithNotMatchingArgumentOnHealthySequence()
+	{
+		assertArrayEquals( new Sequence[0], healthy.sequence.getMatches( healthy.missingSegment ) );
+	}
+
+	@Test
+	public void getMatchesWithMatchingArgumentOnHealthySequence()
+	{
+		assertArrayEquals(
+				new Sequence[] { new Sequence( healthy.existingSegment ) },
+				healthy.sequence.getMatches( healthy.existingSegment ) );
 	}
 
 	@Test( expected = NullPointerException.class )
