@@ -26,16 +26,22 @@ public class CodingContestTest
 		assertTrue( contest( "AGGG TCGG GGGG TCCT GGGT" ).hasRiskOfTiberiusSyndrome().getResult() );
 	}
 
+	// Has a CAG segment followed by exactly one C or one G and is then not followed by T the next two slots.
+
 	@Test
 	public void hasBrownEyesOnUnaffectedSequence()
 	{
-		throw new UnsupportedOperationException();
+		assertFalse( contest( "CATA GAAT" ).hasBrownEyes().getResult() );
+		assertFalse( contest( "CAGA GAAT" ).hasBrownEyes().getResult() );
+		assertFalse( contest( "CAGC TAAT" ).hasBrownEyes().getResult() );
+		assertFalse( contest( "CAGG TTAT" ).hasBrownEyes().getResult() );
 	}
 
 	@Test
 	public void hasBrownEyesOnAffectedSequence()
 	{
-		throw new UnsupportedOperationException();
+		assertTrue( contest( "CAGC GAAT" ).hasBrownEyes().getResult() );
+		assertTrue( contest( "CAGG ACAT" ).hasBrownEyes().getResult() );
 	}
 
 	@Test
