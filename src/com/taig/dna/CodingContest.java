@@ -152,7 +152,7 @@ public class CodingContest
 			@Override
 			public Integer getResult()
 			{
-				return getResultSet() + 1;
+				return getResultSet() == -1 ? null : getResultSet() + 1;
 			}
 
 			@Override
