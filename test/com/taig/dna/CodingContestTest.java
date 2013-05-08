@@ -125,12 +125,13 @@ public class CodingContestTest
 	@Test
 	public void getComplementSequenceOnEmptySequence()
 	{
-		throw new UnsupportedOperationException();
+		assertEquals( new Sequence(), empty.getComplementSequence().getResult() );
 	}
 
 	@Test
 	public void getComplementSequenceOnHealthySequence()
 	{
-		throw new UnsupportedOperationException();
+		String dna = "AAAAGGGGCCCCTTTT";
+		assertEquals( new Sequence( dna ).getComplement(), contest( dna ).getComplementSequence().getResult() );
 	}
 }
