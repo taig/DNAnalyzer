@@ -2,6 +2,8 @@ package com.taig.dna;
 
 import org.junit.Test;
 
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class CodingContestTest
@@ -47,13 +49,19 @@ public class CodingContestTest
 	@Test
 	public void countNucleotidesOnEmptySequence()
 	{
-		throw new UnsupportedOperationException();
+		for( Map.Entry<String, Integer> entry : contest( "" ).countNucleotides().getResult().entrySet() )
+		{
+			assertSame( 0, entry.getValue() );
+		}
 	}
 
 	@Test
 	public void countNucleotidesOnHealthySequence()
 	{
-		throw new UnsupportedOperationException();
+		for( Map.Entry<String, Integer> entry : contest( "AAAA CCCC GGGG TTTT" ).countNucleotides().getResult().entrySet() )
+		{
+			assertSame( 4, entry.getValue() );
+		}
 	}
 
 	@Test
