@@ -1,5 +1,6 @@
 package com.taig.dna;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Map;
@@ -8,9 +9,17 @@ import static org.junit.Assert.*;
 
 public class CodingContestTest
 {
+	protected CodingContest empty;
+
 	public CodingContest contest( String dna )
 	{
 		return new CodingContest( new Sequence( dna.replaceAll( "\\s", "" ) ) );
+	}
+
+	@Before
+	public void setUp()
+	{
+		this.empty = contest( "" );
 	}
 
 	// At least three distinct occurrences of the sequence GGG.
@@ -49,7 +58,7 @@ public class CodingContestTest
 	@Test
 	public void countNucleotidesOnEmptySequence()
 	{
-		for( Map.Entry<String, Integer> entry : contest( "" ).countNucleotides().getResult().entrySet() )
+		for( Map.Entry<String, Integer> entry : empty.countNucleotides().getResult().entrySet() )
 		{
 			assertSame( 0, entry.getValue() );
 		}
@@ -67,8 +76,8 @@ public class CodingContestTest
 	@Test
 	public void findFirstCtagOccurrenceOnEmptySequence()
 	{
-		assertSame( -1, contest( "" ).findFirstCtagOccurrence().getResultSet() );
-		assertNull( contest( "" ).findFirstCtagOccurrence().getResult() );
+		assertSame( -1, empty.findFirstCtagOccurrence().getResultSet() );
+		assertNull( empty.findFirstCtagOccurrence().getResult() );
 	}
 
 	@Test
