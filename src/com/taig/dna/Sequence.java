@@ -153,4 +153,23 @@ public class Sequence extends ArrayList<Nucleotide>
 
 		return sequence.toString();
 	}
+
+	/**
+	 * An alternative String representation to {@link java.util.Arrays#toString(Object[])} making use of {@link
+	 * #toFormattedString()}.
+	 *
+	 * @param sequences The Sequences that will be glued to a String.
+	 * @return The String representation of the given Sequences.
+	 */
+	public static String toString( Sequence[] sequences )
+	{
+		StringBuilder builder = new StringBuilder();
+
+		for( Sequence sequence : sequences )
+		{
+			builder.append( sequence.toFormattedString() ).append( ", " );
+		}
+
+		return builder.delete( Math.max( 0, builder.length() - 2 ), builder.length() ).toString();
+	}
 }
