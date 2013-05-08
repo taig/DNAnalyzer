@@ -51,7 +51,7 @@ public class CodingContestTest
 	}
 
 	@Test
-	public void countNucleotidesOnHealtySequence()
+	public void countNucleotidesOnHealthySequence()
 	{
 		throw new UnsupportedOperationException();
 	}
