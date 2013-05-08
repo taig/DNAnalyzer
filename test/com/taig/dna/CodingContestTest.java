@@ -108,16 +108,18 @@ public class CodingContestTest
 		assertTrue( contest( "AAAA TTTT GGGG" ).hasMorePurinesThanPyrimidines().getResult() );
 	}
 
+	// A segment that consists of four purines followed by four pyrimidines.
+
 	@Test
 	public void hasFromingenDischrypsiaEvidenceOnUnaffectedSequence()
 	{
-		throw new UnsupportedOperationException();
+		assertFalse( contest( "AAAA TTTG" ).hasFromingenDischrypsiaEvidence().getResult() );
 	}
 
 	@Test
 	public void hasFromingenDischrypsiaEvidenceOnAffectedSequence()
 	{
-		throw new UnsupportedOperationException();
+		assertTrue( contest( "AAAA TTTT" ).hasFromingenDischrypsiaEvidence().getResult() );
 	}
 
 	@Test
