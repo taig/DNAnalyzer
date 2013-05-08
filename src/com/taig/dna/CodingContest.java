@@ -40,21 +40,27 @@ public class CodingContest
 	 *
 	 * @return {@link Solution} to exercise 1.1.
 	 */
-	public Solution<Integer> hasRiskOfTiberiusSyndrome()
+	public Solution.Detailed<Integer, Boolean> hasRiskOfTiberiusSyndrome()
 	{
-		return new Solution<Integer>( 1, 1, "Is the person at risk to acquire Tiberius syndrome?" )
+		return new Solution.Detailed<Integer, Boolean>( 1, 1, "Is the person at risk to acquire Tiberius syndrome?" )
 		{
 			@Override
-			public Integer getResult()
+			public Integer getResultSet()
 			{
 				return sequence.count( "GGG" );
 			}
 
 			@Override
+			public Boolean getResult()
+			{
+				return getResultSet() >= 3;
+			}
+
+			@Override
 			public String getFormattedResult()
 			{
-				return ( result >= 3 ? "Yes" : "No" ) +
-					   " (" + result + " occurrences, 3 occurrences indicate high risk)";
+				return ( getResult() ? "Yes" : "No" ) +
+					   " (" + getResultSet() + " occurrences, 3 occurrences indicate high risk)";
 			}
 		};
 	}
@@ -66,21 +72,27 @@ public class CodingContest
 	 *
 	 * @return {@link Solution} to exercise 1.2.
 	 */
-	public Solution<Sequence[]> hasBrownEyes()
+	public Solution.Detailed<Sequence[], Boolean> hasBrownEyes()
 	{
-		return new Solution<Sequence[]>( 1, 2, "Does this person have brown eyes?" )
+		return new Solution.Detailed<Sequence[], Boolean>( 1, 2, "Does this person have brown eyes?" )
 		{
 			@Override
-			public Sequence[] getResult()
+			public Sequence[] getResultSet()
 			{
 				// TODO find out if "not followed by two Ts" is correct; assignment is not clear.
 				return sequence.getMatches( "CAG[C|G][^T]{2}" );
 			}
 
 			@Override
+			public Boolean getResult()
+			{
+				return getResultSet().length > 0;
+			}
+
+			@Override
 			public String getFormattedResult()
 			{
-				return result.length > 0 ? "Yes (respective segment(s): " + Arrays.toString( result ) + ")" : "No";
+				return getResult() ? "Yes (respective segment(s): " + Arrays.toString( getResultSet() ) + ")" : "No";
 			}
 		};
 	}
@@ -121,7 +133,7 @@ public class CodingContest
 			{
 				StringBuilder builder = new StringBuilder();
 
-				for( Map.Entry<String, Integer> entry : result.entrySet() )
+				for( Map.Entry<String, Integer> entry : getResult().entrySet() )
 				{
 					builder.append( entry.getKey() ).append( ":\t" ).append( entry.getValue() ).append( "\n" );
 				}
@@ -134,12 +146,18 @@ public class CodingContest
 	/**
 	 * @return {@link Solution} to exercise 1.4.
 	 */
-	public Solution<Integer> findFirstCtagOccurrence()
+	public Solution.Detailed<Integer, Integer> findFirstCtagOccurrence()
 	{
-		return new Solution<Integer>( 1, 4, "What's the location of the first occurrence of the sequence CTAG in the given segment?" )
+		return new Solution.Detailed<Integer, Integer>( 1, 4, "What's the location of the first occurrence of the sequence CTAG in the given segment?" )
 		{
 			@Override
 			public Integer getResult()
+			{
+				return getResultSet() + 1;
+			}
+
+			@Override
+			public Integer getResultSet()
 			{
 				return sequence.toString().indexOf( "CTAG" );
 			}
@@ -147,7 +165,7 @@ public class CodingContest
 			@Override
 			public String getFormattedResult()
 			{
-				return String.valueOf( result + 1 );
+				return String.valueOf( getResult() );
 			}
 		};
 	}
@@ -157,16 +175,22 @@ public class CodingContest
 	 *
 	 * @return {@link Solution} to exercise 2.1.
 	 */
-	public Solution<Integer[]> hasMorePurinesThanPyrimidines()
+	public Solution.Detailed<Integer[], Boolean> hasMorePurinesThanPyrimidines()
 	{
-		return new Solution<Integer[]>( 2, 1, "Does this segment have more purines than pyrimidines?" )
+		return new Solution.Detailed<Integer[], Boolean>( 2, 1, "Does this segment have more purines than pyrimidines?" )
 		{
 			private static final int R = 0;
 
 			private static final int Y = 1;
 
 			@Override
-			public Integer[] getResult()
+			public Boolean getResult()
+			{
+				return getResultSet()[R] > getResultSet()[Y];
+			}
+
+			@Override
+			public Integer[] getResultSet()
 			{
 				return new Integer[] {
 						sequence.count( Adenine.ABBREVIATION + "|" + Guanine.ABBREVIATION ),
@@ -176,7 +200,7 @@ public class CodingContest
 			@Override
 			public String getFormattedResult()
 			{
-				return ( result[R] > result[Y] ? "Yes" : "No" ) + " (" + result[R] + " R, " + result[Y] + " Y)";
+				return ( getResult() ? "Yes" : "No" ) + " (" + getResultSet()[R] + " R, " + getResultSet()[Y] + " Y)";
 			}
 		};
 	}
@@ -187,12 +211,18 @@ public class CodingContest
 	 *
 	 * @return {@link Solution} to exercise 2.2.
 	 */
-	public Solution<Sequence[]> hasFromingenDischrypsiaEvidence()
+	public Solution.Detailed<Sequence[], Boolean> hasFromingenDischrypsiaEvidence()
 	{
-		return new Solution<Sequence[]>( 2, 2, "Does this DNA strand show evidence for the Fromingen's dischrypsia?" )
+		return new Solution.Detailed<Sequence[], Boolean>( 2, 2, "Does this DNA strand show evidence for the Fromingen's dischrypsia?" )
 		{
 			@Override
-			public Sequence[] getResult()
+			public Boolean getResult()
+			{
+				return getResultSet().length > 0;
+			}
+
+			@Override
+			public Sequence[] getResultSet()
 			{
 				return sequence.getMatches( "[" + Adenine.ABBREVIATION + "|" + Guanine.ABBREVIATION + "]{4}" +
 											"[" + Cytosine.ABBREVIATION + "|" + Thymine.ABBREVIATION + "]{4}" );
@@ -201,7 +231,7 @@ public class CodingContest
 			@Override
 			public String getFormattedResult()
 			{
-				return result.length > 0 ? "Yes (affected segment(s): " + Arrays.toString( result ) + ")" : "No";
+				return getResult() ? "Yes (affected segment(s): " + Arrays.toString( getResultSet() ) + ")" : "No";
 			}
 		};
 	}
@@ -224,7 +254,7 @@ public class CodingContest
 			@Override
 			public String getFormattedResult()
 			{
-				return result.toFormattedString();
+				return getResult().toFormattedString();
 			}
 		};
 	}
@@ -317,7 +347,7 @@ public class CodingContest
 		}
 	}
 
-	protected abstract static class Solution<T>
+	protected abstract static class Solution<S>
 	{
 		public int group;
 
@@ -325,17 +355,14 @@ public class CodingContest
 
 		public String task;
 
-		protected T result;
-
 		public Solution( int group, int number, String task )
 		{
 			this.group = group;
 			this.number = number;
 			this.task = task;
-			this.result = getResult();
 		}
 
-		public abstract T getResult();
+		public abstract S getResult();
 
 		public abstract String getFormattedResult();
 
@@ -351,6 +378,16 @@ public class CodingContest
 			}
 
 			return builder.toString();
+		}
+
+		protected abstract static class Detailed<T, S> extends Solution<S>
+		{
+			public Detailed( int group, int number, String task )
+			{
+				super( group, number, task );
+			}
+
+			public abstract T getResultSet();
 		}
 	}
 }
