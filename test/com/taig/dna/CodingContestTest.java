@@ -67,19 +67,21 @@ public class CodingContestTest
 	@Test
 	public void findFirstCtagOccurrenceOnEmptySequence()
 	{
-		throw new UnsupportedOperationException();
+		assertSame( -1, contest( "" ).findFirstCtagOccurrence().getResultSet() );
+		assertNull( contest( "" ).findFirstCtagOccurrence().getResult() );
 	}
 
 	@Test
 	public void findFirstCtagOccurrenceOnHealthySequenceWithoutCtag()
 	{
-		throw new UnsupportedOperationException();
+		assertSame( -1, contest( "AAGG CTAT GGAA" ).findFirstCtagOccurrence().getResultSet() );
+		assertNull( contest( "AAGG CTAT GGAA" ).findFirstCtagOccurrence().getResult() );
 	}
 
 	@Test
 	public void findFirstCtagOccurrenceOnHealthySequenceWithCtag()
 	{
-		throw new UnsupportedOperationException();
+		assertSame( 5, contest( "AAGG CTAG GGAA" ).findFirstCtagOccurrence().getResult() );
 	}
 
 	@Test
