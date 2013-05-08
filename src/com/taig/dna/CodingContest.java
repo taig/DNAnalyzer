@@ -2,7 +2,6 @@ package com.taig.dna;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,7 +91,7 @@ public class CodingContest
 			@Override
 			public String getFormattedResult()
 			{
-				return getResult() ? "Yes (respective segment(s): " + Arrays.toString( getResultSet() ) + ")" : "No";
+				return getResult() ? "Yes (respective segment(s): " + Sequence.toString( getResultSet() ) + ")" : "No";
 			}
 		};
 	}
@@ -231,7 +230,7 @@ public class CodingContest
 			@Override
 			public String getFormattedResult()
 			{
-				return getResult() ? "Yes (affected segment(s): " + Arrays.toString( getResultSet() ) + ")" : "No";
+				return getResult() ? "Yes (affected segment(s): " + Sequence.toString( getResultSet() ) + ")" : "No";
 			}
 		};
 	}
