@@ -2,6 +2,7 @@ package com.taig.dna;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,22 +67,42 @@ public class Sequence extends ArrayList<Nucleotide>
 	 * @return The created {@link Matcher} based on the given regular expression and the DNA sequence's current state.
 	 * @throws NullPointerException If the given regular expression is <code>null</code>.
 	 */
-	public Matcher match( String regex )
+	public Matcher getMatcher( String regex )
 	{
 		return Pattern.compile( regex, Pattern.CASE_INSENSITIVE ).matcher( toString() );
 	}
 
 	/**
+	 * Get an array of all Sequences that match the given regular expression.
+	 *
+	 * @param regex The regular expression to search for within the DNA sequence.
+	 * @return An array of Sequences containing the DNA sequence's segments that match the given regular expression.
+	 * @throws NullPointerException If the given regular expression is <code>null</code>.
+	 */
+	public Sequence[] getMatches( String regex )
+	{
+		Matcher matcher = getMatcher( regex );
+		List<Sequence> matches = new ArrayList<Sequence>();
+
+		while( matcher.find() )
+		{
+			matches.add( new Sequence( matcher.group( 0 ) ) );
+		}
+
+		return matches.toArray( new Sequence[matches.size()] );
+	}
+
+	/**
 	 * Check if the given regular expression occurs in the DNA sequence or not.
 	 *
-	 * @param regex The regular expression to look for within the DNA sequence.
+	 * @param regex The regular expression to search for within the DNA sequence.
 	 * @return <code>true</code> if the given regular expression exists within the DNA sequence at least one, otherwise
 	 *         <code>false</code>.
 	 * @throws NullPointerException If the given regular expression is <code>null</code>.
 	 */
 	public boolean contains( String regex )
 	{
-		return match( regex ).find();
+		return getMatcher( regex ).find();
 	}
 
 	/**
@@ -94,7 +115,7 @@ public class Sequence extends ArrayList<Nucleotide>
 	public int count( String regex )
 	{
 		int occurrences = 0;
-		Matcher matcher = match( regex );
+		Matcher matcher = getMatcher( regex );
 
 		while( matcher.find() )
 		{
