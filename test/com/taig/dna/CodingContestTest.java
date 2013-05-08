@@ -96,13 +96,16 @@ public class CodingContestTest
 	@Test
 	public void hasMorePurinesThanPyrimidinesOnEmptySequence()
 	{
-		throw new UnsupportedOperationException();
+		assertFalse( empty.hasMorePurinesThanPyrimidines().getResult() );
+		assertSame( 0, empty.hasMorePurinesThanPyrimidines().getResultSet()[0] );
+		assertSame( 0, empty.hasMorePurinesThanPyrimidines().getResultSet()[1] );
 	}
 
 	@Test
 	public void hasMorePurinesThanPyrimidinesOnHealthySequence()
 	{
-		throw new UnsupportedOperationException();
+		assertFalse( contest( "AAAA TTTT GTCCC" ).hasMorePurinesThanPyrimidines().getResult() );
+		assertTrue( contest( "AAAA TTTT GGGG" ).hasMorePurinesThanPyrimidines().getResult() );
 	}
 
 	@Test
