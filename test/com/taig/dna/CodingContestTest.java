@@ -1,6 +1,7 @@
 package com.taig.dna;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class CodingContestTest
@@ -10,16 +11,19 @@ public class CodingContestTest
 		return new CodingContest( new Sequence( dna.replaceAll( "\\s", "" ) ) );
 	}
 
+	// At least three distinct occurrences of the sequence GGG.
+
 	@Test
 	public void hasRiskOfTiberiusSyndromeOnUnaffectedSequence()
 	{
-		assertFalse( contest( "AGGG TCTT GGAA TCCT AAGT" ).hasBrownEyes().getResult() );
+		assertFalse( contest( "AGGG TCTT GGAA TCCT AAGT" ).hasRiskOfTiberiusSyndrome().getResult() );
 	}
 
 	@Test
 	public void hasRiskOfTiberiusSyndromeOnAffectedSequence()
 	{
-		throw new UnsupportedOperationException();
+		assertTrue( contest( "AGGG TCGG GGAA TCCT GGGT" ).hasRiskOfTiberiusSyndrome().getResult() );
+		assertTrue( contest( "AGGG TCGG GGGG TCCT GGGT" ).hasRiskOfTiberiusSyndrome().getResult() );
 	}
 
 	@Test
