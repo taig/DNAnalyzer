@@ -163,13 +163,13 @@ public class Sequence extends ArrayList<Nucleotide>
 	 */
 	public static String toString( Sequence[] sequences )
 	{
-		StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder( "[" );
 
 		for( Sequence sequence : sequences )
 		{
 			builder.append( sequence.toFormattedString() ).append( ", " );
 		}
 
-		return builder.delete( Math.max( 0, builder.length() - 2 ), builder.length() ).toString();
+		return builder.delete( Math.max( 0, builder.length() - 2 ), builder.length() ).append( "]" ).toString();
 	}
 }
