@@ -7,4 +7,4 @@ java -jar bin/dna.jar -i asset/female-35.dna > result.txt
 git add result.txt
 git add -f bin/dna.jar
 git commit -m "Deploy."
-git push origin master
+git push
